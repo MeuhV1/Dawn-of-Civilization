@@ -2947,6 +2947,59 @@ iCivMexico : {
 	],
 },
 iCivBoers : {
+	iGreatProphet : [
+		"Sarel Cilliers", # 19th
+		"Siener van Rensburg", # 19th
+		iGlobal,
+		"fNontetha Nkwenkwe", # 20th
+		"Desmond Tutu", # 20th
+	],
+	iGreatArtist : [
+		"Solomon Thekisho Plaatje", # 20th
+		"fIngrid Jonker", # 20th
+		"Jacobus Hendrik Pierneef", # 20th
+		"fNadine Gordimer", # 20th
+		"fMiriam Makeba", # 20th
+		"John Maxwell Coetzee", # 20th
+	],
+	iGreatScientist : [
+		"Max Theiler", # 20th
+		"Allan McLeod Cormack", # 20th
+		"Christiaan Barnard", # 20th
+		"Sydney Brenner", # 20th
+	],
+	iGreatMerchant : [
+		"Sammy Marks", # 19th
+		iGlobal,
+		"Harry Oppenheimer", # 20th
+		"Richard Maponya", # 20th
+		"Mark Shuttleworth", # 20th
+	],
+	iGreatEngineer : [
+		"fSophy Gray", # 19th
+		"Sytze Wierda", # 19th
+		iGlobal,
+		"Gerard Moerdijk", # 20th
+		"Hendrik van der Bijl", # 20th
+		"Elon Musk", # 21st
+	],
+	iGreatStatesman : [
+		"Andries Pretorius", # 19th
+		"Louis Botha", # 19th
+		iGlobal,
+		"Albert Lutuli", # 20th
+		"fHelen Suzman", # 20th
+		"Harry Schwarz", # 20th
+		"Mangosuthu Buthelezi", # 20th
+		"Frederik Willem de Klerk", # 20th
+	],
+	iGreatGeneral : [
+		"Daniel Theron", # 19th
+		"Koos de la Rey", # 19th
+		"Christiaan de Wet", # 19th
+		iGlobal,
+		"Jan Smuts", # 20th
+	],
 },
 iCivCanada : {
 	iGreatProphet : [
