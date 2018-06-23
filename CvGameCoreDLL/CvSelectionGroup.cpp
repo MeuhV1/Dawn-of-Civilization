@@ -1131,6 +1131,7 @@ bool CvSelectionGroup::canStartMission(int iMission, int iData1, int iData2, CvP
 		case MISSION_DAMAGE:
 		case MISSION_MULTI_SELECT:
 		case MISSION_MULTI_DESELECT:
+		case MISSION_ASSASSIN:
 			break;
 
 		default:
@@ -4759,7 +4760,7 @@ TeamTypes CvSelectionGroup::getHeadTeam() const
 
 void CvSelectionGroup::clearMissionQueue()
 {
-	FAssert(getOwnerINLINE() != NO_PLAYER);
+	//FAssert(getOwnerINLINE() != NO_PLAYER);
 
 	deactivateHeadMission();
 
@@ -4998,7 +4999,7 @@ void CvSelectionGroup::activateHeadMission()
 
 void CvSelectionGroup::deactivateHeadMission()
 {
-	FAssert(getOwnerINLINE() != NO_PLAYER);
+	//FAssert(getOwnerINLINE() != NO_PLAYER);
 
 	if (headMissionQueueNode() != NULL)
 	{

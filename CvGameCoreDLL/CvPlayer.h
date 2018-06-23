@@ -1239,6 +1239,10 @@ public:
 	int getModifier(ModifierTypes eModifier) const;
 	void setModifier(ModifierTypes eModifier, int iNewValue);
 
+	// Leoreth
+	int getTechPreference(TechTypes eTech) const;
+	void setTechPreference(TechTypes eTech, int iNewValue);
+
 	int getBirthYear() const;
 	int getBirthTurn() const;
 	void setBirthYear(int iNewValue);
@@ -1315,6 +1319,9 @@ public:
 	void restoreGeneralThreshold();
 
 	bool canUseSlaves() const;
+
+	void updateCultureRanks() const;
+	void updateCultureRanks(CvPlotGroup* pPlotGroup) const;
 
 	bool m_bTurnPlayed;
 
@@ -1523,6 +1530,7 @@ protected:
 
 	int* m_aiStabilityParameters;
 	int* m_aiModifiers;
+	int* m_paiTechPreferences;
 
 	int* m_aiReligionYieldChange;
 

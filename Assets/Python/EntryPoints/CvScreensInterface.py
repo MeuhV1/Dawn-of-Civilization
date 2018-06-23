@@ -1058,7 +1058,7 @@ def getUHVTileInfo(argsList):
 		if utils.isPlotInArea((x, y), vic.tSAmericaTL, vic.tSAmericaBR, vic.tSouthAmericaExceptions):
 			return 43
 			
-	elif iPlayer == iTurkey:
+	elif iPlayer == iOttomans:
 		if (x,y) in vic.lEasternMediterranean:
 			return 47
 			
@@ -1155,7 +1155,7 @@ def getUHVTileInfo(argsList):
 	elif iPlayer == iMongolia:
 		if (x, y) in Areas.getNormalArea(iChina, False):
 			return 69
-			
+
 	elif iPlayer == iSweden:
 		if (x, y) in vic.lSkagerrak or (x, y) in vic.lSkagerrak:
 			return 70
@@ -1210,13 +1210,18 @@ def getUHVTileInfo(argsList):
 		if utils.isPlotInArea((x, y), vic.tSubSaharaTL, vic.tSubSaharaBR, vic.tSubSaharaExceptions):
 			return 82
 			
-		# continue with ID 83
-			
 	elif iPlayer == iSwahili:
 		if gc.getMap().plot(x, y).getRegionID() == rAustralia:
 			return 72
+		
+	elif iPlayer == iTurks:
+		if (x, y) in vic.lMediterraneanPorts:
+			return 83
+			
+		if utils.isPlotInArea((x, y), vic.tChinaTL, vic.tChinaBR):
+			return 84
 				
-		# continue with 81
+		# continue with ID 72
 	return -1
 		
 def getCityName(argsList):

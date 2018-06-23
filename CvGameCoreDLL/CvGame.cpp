@@ -2344,7 +2344,7 @@ void CvGame::updateTechRanks()
 	int iI, iJ;
 
 	TeamTypes eBestTeam;
-	bool abTeamRanked[MAX_TEAMS];
+	bool* abTeamRanked = new bool[MAX_TEAMS];
 
 	for (iI = 0; iI < MAX_TEAMS; iI++)
 	{
@@ -2915,7 +2915,7 @@ bool CvGame::isTeamVoteEligible(TeamTypes eTeam, VoteSourceTypes eVoteSource) co
 	CvTeam& kTeam = GET_TEAM(eTeam);
 
 	//Rhye - start
-	if (eTeam == INDEPENDENT || eTeam == INDEPENDENT2 || eTeam == NATIVE || eTeam == CELTIA || eTeam == SELJUKS)
+	if (eTeam == INDEPENDENT || eTeam == INDEPENDENT2 || eTeam == NATIVE || eTeam == CELTIA)
 	{
 		return false;
 	}

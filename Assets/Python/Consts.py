@@ -8,23 +8,23 @@ iWorldX = 124
 iWorldY = 68
 
 # initialise player variables to player IDs from WBS
-iNumPlayers = 54
+iNumPlayers = 55
 (iEgypt, iChina, iBabylonia, iHarappa, iGreece, iIndia, iCarthage, iPolynesia, iPersia, iRome, 
-iTamils, iEthiopia, iVietnam, iKorea, iMaya, iByzantium, iJapan, iVikings, iArabia, iTibet, iIndonesia,
+iTamils, iEthiopia, iVietnam, iKorea, iMaya, iByzantium, iJapan, iVikings, iTurks, iArabia, iTibet, iIndonesia,
 iMoors, iSpain, iFrance, iKhmer, iEngland, iHolyRome, iRussia, iPhilippines, iSwahili, iMamluks, iMali, iPoland, iZimbabwe, iPortugal, 
-iInca, iItaly, iNigeria, iMongolia, iAztecs, iMughals, iTurkey, iThailand, iCongo, iSweden, iNetherlands, iManchuria,
+iInca, iItaly, iNigeria, iMongolia, iAztecs, iMughals, iOttomans, iThailand, iCongo, iSweden, iNetherlands, iManchuria,
 iGermany, iAmerica, iArgentina, iBrazil, iAustralia, iBoers, iCanada) = range(iNumPlayers)
 
 (pEgypt, pChina, pBabylonia, pHarappa, pGreece, pIndia, pCarthage, pPolynesia, pPersia, pRome, 
-pTamils, pEthiopia, pVietnam, pKorea, pMaya, pByzantium, pJapan, pVikings, pArabia, pTibet, pIndonesia, 
+pTamils, pEthiopia, pVietnam, pKorea, pMaya, pByzantium, pJapan, pVikings, pTurks, pArabia, pTibet, pIndonesia, 
 pMoors, pSpain, pFrance, pKhmer, pEngland, pHolyRome, pRussia, pPhilippines, pSwahili, pMamluks, pMali, pPoland, pZimbabwe, pPortugal, 
-pInca, pItaly, pNigeria, pMongolia, pAztecs, pMughals, pTurkey, pThailand, pCongo, pSweden, pNetherlands, pManchuria, 
+pInca, pItaly, pNigeria, pMongolia, pAztecs, pMughals, pOttomans, pThailand, pCongo, pSweden, pNetherlands, pManchuria, 
 pGermany, pAmerica, pArgentina, pBrazil, pAustralia, pBoers, pCanada) = [gc.getPlayer(i) for i in range(iNumPlayers)]
 
 (teamEgypt, teamChina, teamBabylonia, teamHarappa, teamGreece, teamIndia, teamCarthage, teamPolynesia, teamPersia, teamRome, 
-teamTamils, teamEthiopia, teamVietnam, teamKorea, teamMaya, teamByzantium, teamJapan, teamVikings, teamArabia, teamTibet, teamIndonesia,
+teamTamils, teamEthiopia, teamVietnam, teamKorea, teamMaya, teamByzantium, teamJapan, teamVikings, teamTurks, teamArabia, teamTibet, teamIndonesia,
 teamMoors, teamSpain, teamFrance, teamKhmer, teamEngland, teamHolyRome, teamRussia, teamPhilippines, teamSwahili, teamMamluks, teamMali, teamPoland, teamZimbabwe, teamPortugal, 
-teamInca, teamItaly, teamNigeria, teamMongolia, teamAztecs, teamMughals, teamTurkey, teamThailand, teamCongo, teamSweden, teamNetherlands, teamManchuria, 
+teamInca, teamItaly, teamNigeria, teamMongolia, teamAztecs, teamMughals, teamOttomans, teamThailand, teamCongo, teamSweden, teamNetherlands, teamManchuria, 
 teamGermany, teamAmerica, teamArgentina, teamBrazil, teamAustralia, teamBoers, teamCanada) = [gc.getTeam(i) for i in range(iNumPlayers)]
 
 iHolland = iNetherlands
@@ -43,13 +43,12 @@ iIndependent = iNumPlayers
 iIndependent2 = iNumPlayers+1
 iNative = iNumPlayers+2
 iCeltia = iNumPlayers+3
-iSeljuks = iNumPlayers+4
-iNumTotalPlayers = iNumPlayers+5
-iBarbarian = iNumPlayers+5
+iNumTotalPlayers = iNumPlayers+4
+iBarbarian = iNumPlayers+4
 iNumTotalPlayersB = iBarbarian+1
 
-(pIndependent, pIndependent2, pNative, pCeltia, pSeljuks, pBarbarian) = [gc.getPlayer(i) for i in range(iIndependent, iNumTotalPlayersB)]
-(teamIndependent, teamIndependent2, teamNative, teamCeltia, teamSeljuks, teamBarbarian) = [gc.getTeam(i) for i in range(iIndependent, iNumTotalPlayersB)]
+(pIndependent, pIndependent2, pNative, pCeltia, pBarbarian) = [gc.getPlayer(i) for i in range(iIndependent, iNumTotalPlayersB)]
+(teamIndependent, teamIndependent2, teamNative, teamCeltia, teamBarbarian) = [gc.getTeam(i) for i in range(iIndependent, iNumTotalPlayersB)]
 
 l0Array =       [0 for i in range(iNumPlayers)]
 l0ArrayActive = [0 for i in range(iNumPlayers)]
@@ -63,10 +62,9 @@ iNumCivilizations = 67
 iCivChina, iCivColombia, iCivEgypt, iCivEngland, iCivEthiopia, iCivFrance, iCivGermany, iCivGreece, iCivHarappa, iCivHolyRome, 
 iCivInca, iCivIndia, iCivIndonesia, iCivIran, iCivItaly, iCivJapan, iCivKhmer, iCivKongo, iCivKorea, iCivMali, iCivMamluks, iCivManchuria,
 iCivMaya, iCivMexico, iCivMongols, iCivMoors, iCivMughals, iCivNativeAmericans, iCivNetherlands, iCivNigeria, iCivOttomans, iCivPersia, iCivPhilippines, iCivPoland, 
-iCivPolynesia, iCivPortugal, iCivRome, iCivRussia, iCivSeljuks, iCivSpain, iCivSumeria, iCivSwahili, iCivSweden, iCivTamils, iCivThailand, iCivTibet, iCivVietnam,
+iCivPolynesia, iCivPortugal, iCivRome, iCivRussia, iCivSpain, iCivSumeria, iCivSwahili, iCivSweden, iCivTamils, iCivThailand, iCivTibet, iCivTurks, iCivVietnam,
 iCivVikings, iCivZimbabwe, iCivZulu, iCivIndependent, iCivIndependent2, iCivNative, iCivMinor, iCivBarbarian) = range(iNumCivilizations)
 
-iCivTurkey = iCivOttomans
 iCivCongo = iCivKongo
 iCivAztecs = iCivAztec
 iCivCeltia = iCivCelt
@@ -75,26 +73,26 @@ iCivSouthAfrica = iCivBoers
 #for Congresses and Victory
 lCivGroups = [[iGreece, iRome, iByzantium, iVikings, iMoors, iSpain, iFrance, iEngland, iHolyRome, iRussia, iNetherlands, iItaly, iPoland, iPortugal, iGermany, iSweden],  #Euros
 		[iIndia, iChina, iHarappa, iPolynesia, iPersia, iJapan, iTamils, iKorea, iByzantium, iTibet, iKhmer, iIndonesia, iRussia, iMongolia, iMughals, iThailand, iVietnam, iManchuria, iPhilippines], #Asian
-		[iEgypt, iBabylonia, iPersia, iByzantium, iArabia, iTurkey, iCarthage, iMamluks], #MiddleEastern
-		[iEgypt, iGreece, iCarthage, iRome, iByzantium, iMoors], #Mediterranean
+		[iEgypt, iBabylonia, iPersia, iByzantium, iArabia, iOttomans, iCarthage, iMamluks], #MiddleEastern
+		[iEgypt, iGreece, iCarthage, iRome, iByzantium, iMoors, iTurks], #Mediterranean
 		[iEgypt, iCarthage, iEthiopia, iMali, iCongo, iSwahili, iZimbabwe, iNigeria, iBoers], #African
 		[iMaya, iInca, iAztecs, iAmerica, iArgentina, iBrazil, iAustralia, iCanada]] #American
 
 lCivStabilityGroups = [[iVikings, iSpain, iFrance, iEngland, iHolyRome, iRussia, iNetherlands, iPoland, iPortugal, iItaly, iGermany, iSweden],  #Euros
 		[iIndia, iChina, iHarappa, iPolynesia, iJapan, iKorea, iTibet, iKhmer, iIndonesia, iMongolia, iThailand, iTamils, iVietnam, iManchuria, iPhilippines], #Asian
-		[iBabylonia, iPersia, iArabia, iTurkey, iMughals, iMamluks], #MiddleEastern
+		[iBabylonia, iPersia, iArabia, iOttomans, iMughals, iMamluks, iTurks], #MiddleEastern
 		[iEgypt, iGreece, iCarthage, iRome, iEthiopia, iByzantium, iMoors, iMali, iCongo, iZimbabwe, iNigeria, iSwahili, iBoers], #Mediterranean
 		[iMaya, iInca, iAztecs, iAmerica, iArgentina, iBrazil, iAustralia, iCanada]] #American
 		
 lTechGroups = [[iRome, iGreece, iByzantium, iVikings, iSpain, iFrance, iEngland, iHolyRome, iRussia, iNetherlands, iPoland, iPortugal, iItaly, iGermany, iAmerica, iArgentina, iBrazil, iCanada, iSweden, iAustralia, iBoers], #Europe and NA
-	       [iEgypt, iBabylonia, iHarappa, iIndia, iCarthage, iPersia, iEthiopia, iArabia, iMoors, iMali, iTurkey, iMughals, iTamils, iCongo, iMamluks, iNigeria, iSwahili, iZimbabwe], #Middle East
+	       [iEgypt, iBabylonia, iHarappa, iIndia, iCarthage, iPersia, iEthiopia, iArabia, iMoors, iMali, iOttomans, iMughals, iTamils, iCongo, iMamluks, iNigeria, iSwahili, iZimbabwe, iTurks], #Middle East
 	       [iChina, iKorea, iJapan, iTibet, iKhmer, iIndonesia, iMongolia, iThailand, iManchuria, iVietnam, iPhilippines], #Far East
 	       [iPolynesia, iMaya, iInca, iAztecs]] #Native America
 
 
 lCivBioOldWorld = [iEgypt, iIndia, iChina, iBabylonia, iHarappa, iGreece, iPolynesia, iPersia, iCarthage, iRome, iJapan, iTamils, 
-		   iEthiopia, iKorea, iByzantium, iVikings, iArabia, iTibet, iKhmer, iIndonesia, iMoors, iSpain, iFrance, iEngland, iHolyRome, iRussia, 
-		   iNetherlands, iMali, iTurkey, iPoland, iPortugal, iItaly, iMongolia, iAmerica, iMughals, iThailand, iCongo, iGermany, iSweden,
+		   iEthiopia, iKorea, iByzantium, iVikings, iTurks, iArabia, iTibet, iKhmer, iIndonesia, iMoors, iSpain, iFrance, iEngland, iHolyRome, iRussia, 
+		   iNetherlands, iMali, iOttomans, iPoland, iPortugal, iItaly, iMongolia, iAmerica, iMughals, iThailand, iCongo, iGermany, iSweden,
 		   iAustralia, iBoers, iMamluks, iManchuria, iNigeria, iPhilippines, iSwahili, iVietnam, iZimbabwe,
 		   iIndependent, iIndependent2, iCeltia, iBarbarian]
 lCivBioNewWorld = [iMaya, iInca, iAztecs] #, iNative]
@@ -147,30 +145,31 @@ iLime = 100
 iNumMinorCities = 38
 
 # scripted conquerors
-iNumConquests = 12
+iNumConquests = 15
 
 #neighbours
 lNeighbours = [
-[iBabylonia, iGreece, iPersia, iCarthage, iRome, iEthiopia, iByzantium, iArabia, iMoors, iTurkey, iMamluks], #Egypt
-[iIndia, iJapan, iVietnam, iKorea, iTibet, iKhmer, iMongolia, iThailand, iManchuria, iPhilippines], #China
-[iEgypt, iGreece, iPersia, iTurkey, iMongolia, iCarthage, iByzantium], #Babylonia
+[iBabylonia, iGreece, iPersia, iCarthage, iRome, iEthiopia, iByzantium, iArabia, iMoors, iOttomans, iMamluks], #Egypt
+[iIndia, iJapan, iVietnam, iKorea, iTurks, iTibet, iKhmer, iMongolia, iThailand, iManchuria, iPhilippines], #China
+[iEgypt, iGreece, iPersia, iTurks, iOttomans, iMongolia, iCarthage, iByzantium], #Babylonia
 [iIndia, iPersia, iTamils, iTibet, iMughals], #Harappa
-[iPersia, iCarthage, iRome, iByzantium, iHolyRome, iRussia, iTurkey, iItaly], #Greece
+[iPersia, iCarthage, iRome, iByzantium, iHolyRome, iRussia, iOttomans, iItaly], #Greece
 [iChina, iHarappa, iPersia, iTamils, iTibet, iKhmer, iMongolia, iMughals, iThailand, iVietnam], #India
-[iEgypt, iGreece, iRome, iSpain, iMali, iPortugal, iBabylonia, iPersia, iArabia, iMoors, iTurkey, iItaly, iMamluks], #Carthage
+[iEgypt, iGreece, iRome, iSpain, iMali, iPortugal, iBabylonia, iPersia, iArabia, iMoors, iOttomans, iItaly, iMamluks], #Carthage
 [], # Polynesia
-[iIndia, iBabylonia, iHarappa, iGreece, iByzantium, iTurkey, iMongolia, iCarthage, iMughals, iMamluks], #Persia
+[iIndia, iBabylonia, iHarappa, iGreece, iTurks, iByzantium, iOttomans, iMongolia, iCarthage, iMughals, iMamluks], #Persia
 [iEgypt, iBabylonia, iGreece, iCarthage, iSpain, iFrance, iHolyRome, iPortugal, iItaly, iGermany], #Rome
 [iHarappa, iIndia, iKhmer, iIndonesia, iMughals, iThailand, iVietnam, iPhilippines], #Tamils
 [iEgypt, iArabia, iMali, iCongo, iMamluks, iNigeria, iSwahili, iZimbabwe], #Ethiopia
 [iChina, iKhmer, iThailand, iTamils, iIndia, iIndonesia, iTibet, iPhilippines], #Vietnam
 [iChina, iKorea, iMongolia, iManchuria], #Korea
 [iSpain, iInca, iAztecs, iAmerica], #Maya
-[iEgypt, iBabylonia, iGreece, iPersia, iArabia, iRussia, iMamluks], #Byzantium
+[iEgypt, iBabylonia, iGreece, iPersia, iArabia, iRussia, iMamluks, iOttomans, iTurks], #Byzantium
 [iChina, iKorea, iKhmer, iMongolia, iThailand, iManchuria, iPhilippines], #Japan
 [iFrance, iEngland, iHolyRome, iRussia, iPoland, iSweden, iNetherlands, iGermany], #Vikings
-[iEgypt, iBabylonia, iPersia, iEthiopia, iByzantium, iTurkey, iCarthage, iMamluks], #Arabia
-[iChina, iHarappa, iIndia, iMongolia, iMughals, iVietnam], #Tibet
+[iChina, iBabylonia, iPersia, iMughals, iOttomans, iByzantium, iMongolia, iTibet, iMamluks], # Turks
+[iEgypt, iBabylonia, iPersia, iEthiopia, iByzantium, iOttomans, iCarthage, iMamluks], #Arabia
+[iChina, iHarappa, iIndia, iMongolia, iMughals, iVietnam, iTurks], #Tibet
 [iIndia, iJapan, iKhmer, iThailand, iTamils, iPhilippines, iVietnam], #Indonesia
 [iEgypt, iSpain, iPortugal, iMali, iMamluks], #Moors
 [iCarthage, iRome, iMoors, iFrance, iEngland, iPortugal], #Spain
@@ -178,10 +177,10 @@ lNeighbours = [
 [iIndia, iChina, iTamils, iJapan, iIndonesia, iThailand, iPhilippines, iVietnam], #Khmer
 [iRome, iVikings, iSpain, iFrance, iHolyRome, iNetherlands, iGermany], #England
 [iRome, iVikings, iFrance, iEngland, iNetherlands, iItaly, iPoland, iSweden, iGermany], #Holy Rome
-[iPersia, iByzantium, iVikings, iPoland, iTurkey, iMongolia, iSweden, iGermany], #Russia
+[iPersia, iByzantium, iVikings, iPoland, iOttomans, iMongolia, iSweden, iGermany], #Russia
 [iChina, iTamils, iJapan, iIndonesia, iKhmer, iThailand, iVietnam], #Philippines
 [iEthiopia, iMali, iCongo, iNigeria, iZimbabwe], # Swahili
-[iPersia, iCarthage, iEthiopia, iByzantium, iArabia, iMoors, iTurkey, iEgypt], #Mamluks
+[iPersia, iCarthage, iEthiopia, iByzantium, iArabia, iMoors, iOttomans, iTurks, iEgypt], #Mamluks
 [iEgypt, iCarthage, iEthiopia, iMoors, iCongo, iNigeria, iSwahili, iZimbabwe], #Mali
 [iVikings, iHolyRome, iRussia, iSweden, iGermany], #Poland
 [iEthiopia, iMali, iCongo, iNigeria, iSwahili], #Zimbabwe
@@ -189,10 +188,10 @@ lNeighbours = [
 [iSpain, iAztecs, iAmerica, iArgentina, iBrazil], #Inca
 [iGreece, iCarthage, iRome, iFrance, iHolyRome], #Italy
 [iMali, iCongo, iEthiopia, iSwahili, iZimbabwe], #Nigeria
-[iIndia, iChina, iPersia, iJapan, iKorea, iTibet, iRussia, iTurkey, iManchuria], #Mongolia
+[iIndia, iChina, iPersia, iJapan, iKorea, iTibet, iRussia, iOttomans, iManchuria, iTurks], #Mongolia
 [iSpain, iInca, iAmerica], #Aztec
-[iHarappa, iIndia, iPersia, iTamils, iTibet], #Mughals
-[iBabylonia, iGreece, iPersia, iByzantium, iRussia, iMongolia, iCarthage, iMamluks], #Turkey
+[iHarappa, iIndia, iPersia, iTamils, iTibet, iTurks], #Mughals
+[iBabylonia, iGreece, iPersia, iByzantium, iRussia, iMongolia, iCarthage, iMamluks, iTurks], #Ottomans
 [iIndia, iChina, iJapan, iIndonesia, iKhmer, iTamils, iPhilippines, iVietnam], #Thailand
 [iEthiopia, iMali, iSwahili, iNigeria, iZimbabwe], #Congo
 [iVikings, iHolyRome, iRussia, iPoland, iGermany], # Sweden
@@ -228,6 +227,7 @@ lOlderNeighbours = [
 [iGreece], #Byzantium
 [iKorea], #Japan
 [], #Vikings
+[iChina, iPersia], # Turks
 [iEgypt, iPersia, iByzantium], #Arabia
 [iChina, iHarappa, iIndia, iVietnam], #Tibet
 [iKhmer, iVietnam], #Indonesia
@@ -248,10 +248,10 @@ lOlderNeighbours = [
 [], #Inca
 [iByzantium, iHolyRome], #Italy
 [iMali], #Nigeria
-[iChina, iJapan, iKorea, iArabia, iTibet, iKhmer, iRussia], #Mongolia
+[iChina, iJapan, iKorea, iArabia, iTibet, iKhmer, iRussia, iTurks], #Mongolia
 [iMaya], #Aztec
-[iHarappa, iIndia, iPersia, iArabia, iTibet], #Mughals
-[iBabylonia, iGreece, iPersia, iByzantium, iArabia, iMamluks], #Turkey
+[iHarappa, iIndia, iPersia, iArabia, iTibet, iTurks], #Mughals
+[iBabylonia, iGreece, iPersia, iByzantium, iArabia, iMamluks, iTurks], #Ottomans
 [iIndia, iChina, iJapan, iKhmer, iIndonesia, iVietnam, iPhilippines], #Thailand
 [iNigeria], #Congo
 [iVikings], #Sweden
@@ -288,6 +288,7 @@ tBirth = (
 330,					# Byzantium
 525, # 97, #660BC			# Japan
 551, # 177, #551AD			# Vikings
+552,					# Turks
 620, # 183, #622AD			# Arabia
 630,					# Tibet
 650,					# Indonesia
@@ -353,6 +354,7 @@ tFall = (
 1204, #fourth crusade			# Byzantium
 2020,					# Japan
 1300,					# Vikings
+1507,					# Turks
 900,					# Arabia
 1500,					# Tibet
 1500,					# Indonesia
@@ -409,6 +411,7 @@ iCivMaya : (600, 900, -1),
 iCivByzantium : (1000, 1200, 1450),
 iCivJapan : (1600, 1940, -1),
 iCivVikings : (1050, 1100, 1500),
+iCivTurks : (900, 1100, 1400),
 iCivArabia : (1300, 1300, -1),
 iCivTibet : (1000, 1400, 1700),
 iCivIndonesia : (1300, 1500, 1940),
@@ -432,7 +435,7 @@ iCivNigeria : (1600, 1750, 1950),
 iCivMongols : (1300, -1, 1500),
 iCivAztec : (1520, 1650, -1),
 iCivMughals : (1500, 1660, 1750),
-iCivTurkey : (1550, 1700, 1800),
+iCivOttomans : (1550, 1700, 1800),
 iCivThailand : (1650, 1700, 1900),
 iCivCongo : (1650, 1800, -1),
 iCivIran : (1650, 1750, 1800),
@@ -451,120 +454,18 @@ iCivCanada : (1920, 1950, 2000),
 }
 
 # Leoreth: date-triggered respawn for certain civs
-tRebirth = (
--1,				# Egypt
--1,				# China
--1,				# Babylonia
--1,				# Harappa
--1,	# Byzantium		# Greece
--1,				# India
--1,				# Phoenicia
--1,				# Polynesia
-#1674,	# Maratha Empire
-1501,	# Safavid Persia	# Persia
--1, #1167,	# Italy		# Rome
--1,				# Tamils
--1,				# Ethiopia
--1,				# Vietnam
--1,				# Korea
-1814,	# Colombia
--1,				# Byzantium
--1,				# Japan
--1,				# Vikings
--1,				# Arabia
--1,				# Tibet
--1,				# Indonesia
--1,				# Moors
--1,				# Spain
--1,				# France
--1,				# Khmer
--1,				# England
--1,				# Holy Rome
--1,				# Russia
--1,				# Philippines
--1,				# Swahili
--1,				# Mamluks
--1,				# Mali
--1,				# Poland
--1,				# Zimbabwe
--1,				# Portugal
--1,				# Inca
--1,				# Italy	
--1,				# Nigeria
--1,				# Mongolia
-1810,	# Mexico
--1,				# Mughals
--1,				# Turkey
--1,				# Thailand
--1,				# Congo
--1,				# Sweden
--1,				# Netherlands
--1,				# Manchuria
--1,				# Germany
--1,				# America
--1,				# Argentina
--1,				# Brazil
--1,				# Australia
--1,				# Boers
--1)				# Canada
 
-# Leoreth: ID of the civilization a player is turned into on rebirth
-tRebirthCiv = (
--1,		# Egypt
--1,		# China
--1,		# Babylonia
--1,		# Harappa
--1,		# Greece
--1,		# India
--1,		# Phoenicia
--1,		# Polynesia
-iCivIran,	# Persia
-iCivItaly,	# Rome
--1,		# Tamils
--1,		# Ethiopia
--1,		# Vietnam
--1,		# Korea
-iCivColombia,	# Maya
--1,		# Byzantium
--1,		# Japan
--1,		# Vikings
--1,		# Arabia
--1,		# Tibet
--1,		# Indonesia
--1,		# Moors
--1,		# Spain
--1,		# France
--1,		# Khmer
--1,		# England
--1,		# Holy Rome
--1,		# Russia
--1,		# Philippines
--1,		# Swahili
--1,		# Mamluks
--1,		# Mali
--1,		# Poland
--1,		# Zimbabwe
--1,		# Portugal
--1,		# Inca
--1,		# Italy	
--1,		# Nigeria
--1,		# Mongolia
-iCivMexico,	# Aztecs
--1,		# Mughals
--1,		# Turkey
--1,		# Thailand
--1,		# Congo
--1,		# Sweden
--1,		# Netherlands
--1,		# Manchuria
--1,		# Germany
--1,		# America
--1,		# Argentina
--1,		# Brazil
--1,		# Australia
--1,		# Boers
--1,		# Canada
-)
+dRebirth = {
+iPersia : 1501,		# Iran
+iMaya : 1814,		# Colombia
+iAztecs : 1810,		# Mexico
+}
+
+dRebirthCiv = {
+iPersia : iCivIran,
+iMaya : iCivColombia,
+iAztecs : iCivMexico,
+}
 
 tResurrectionIntervals = (
 [], #Egypt
@@ -585,6 +486,7 @@ tResurrectionIntervals = (
 [(1100, 1280)], #Byzantium
 [(1800, 2020)], #Japan
 [(1520, 2020)], #Vikings
+[(1350, 1500)], #Turks
 [(1900, 2020)], #Arabia
 [],		#Tibet
 [(1900, 2020)], #Indonesia
@@ -608,7 +510,7 @@ tResurrectionIntervals = (
 [(1910, 2020)], #Mongolia
 [], 		#Aztec
 [(1940, 2020)], #Mughals
-[(1700, 2020)], #Turkey
+[(1700, 2020)], #Ottomans
 [(1700, 2020)], #Thailand
 [],		#Congo
 [(1700, 2020)], #Sweden
@@ -622,611 +524,6 @@ tResurrectionIntervals = (
 [(1852, 2020)], #Boers
 [(1867, 2020)], #Canada
 )
-# edead: tGoals[iGameSpeed][iCiv][iGoal]
-# Leoreth: tGoals[reborn][iGameSpeed][iCiv][iGoal]
-tGoals1 = (
-( # Marathon
-("TXT_KEY_UHV_EGY1_MARATHON", "TXT_KEY_UHV_EGY2_MARATHON", "TXT_KEY_UHV_EGY3_MARATHON"),
-("TXT_KEY_UHV_CHI1", "TXT_KEY_UHV_CHI2", "TXT_KEY_UHV_CHI3"),
-("TXT_KEY_UHV_BAB1", "TXT_KEY_UHV_BAB2_MARATHON", "TXT_KEY_UHV_BAB3_MARATHON"),
-("TXT_KEY_UHV_HAR1", "TXT_KEY_UHV_HAR2", "TXT_KEY_UHV_HAR3"),
-("TXT_KEY_UHV_GRE1", "TXT_KEY_UHV_GRE2_MARATHON", "TXT_KEY_UHV_GRE3_MARATHON"),
-("TXT_KEY_UHV_IND1_MARATHON", "TXT_KEY_UHV_IND2", "TXT_KEY_UHV_IND3"),
-("TXT_KEY_UHV_CAR1", "TXT_KEY_UHV_CAR2", "TXT_KEY_UHV_CAR3_MARATHON"),
-("TXT_KEY_UHV_PLY1", "TXT_KEY_UHV_PLY2", "TXT_KEY_UHV_PLY3"),
-("TXT_KEY_UHV_PER1_MARATHON", "TXT_KEY_UHV_PER2_MARATHON", "TXT_KEY_UHV_PER3_MARATHON"),
-("TXT_KEY_UHV_ROM1_MARATHON", "TXT_KEY_UHV_ROM2_MARATHON", "TXT_KEY_UHV_ROM3"),
-("TXT_KEY_UHV_TAM1_MARATHON", "TXT_KEY_UHV_TAM2", "TXT_KEY_UHV_TAM3_MARATHON"),
-("TXT_KEY_UHV_ETH1", "TXT_KEY_UHV_ETH2_MARATHON", "TXT_KEY_UHV_ETH3"),
-("TXT_KEY_UHV_VIE1_MARATHON", "TXT_KEY_UHV_VIE2", "TXT_KEY_UHV_VIE3"),
-("TXT_KEY_UHV_KOR1", "TXT_KEY_UHV_KOR2", "TXT_KEY_UHV_KOR3"),
-("TXT_KEY_UHV_MAY1_MARATHON", "TXT_KEY_UHV_MAY2", "TXT_KEY_UHV_MAY3"),
-("TXT_KEY_UHV_BYZ1_MARATHON", "TXT_KEY_UHV_BYZ2", "TXT_KEY_UHV_BYZ3"),
-("TXT_KEY_UHV_JAP1_MARATHON", "TXT_KEY_UHV_JAP2", "TXT_KEY_UHV_JAP3"),
-("TXT_KEY_UHV_VIK1", "TXT_KEY_UHV_VIK2", "TXT_KEY_UHV_VIK3_MARATHON"),
-("TXT_KEY_UHV_ARA1", "TXT_KEY_UHV_ARA2", "TXT_KEY_UHV_ARA3"),
-("TXT_KEY_UHV_TIB1", "TXT_KEY_UHV_TIB2", "TXT_KEY_UHV_TIB3"),
-("TXT_KEY_UHV_INO1", "TXT_KEY_UHV_INO2", "TXT_KEY_UHV_INO3"),
-("TXT_KEY_UHV_MOO1", "TXT_KEY_UHV_MOO2", "TXT_KEY_UHV_MOO3_MARATHON"),
-("TXT_KEY_UHV_SPA1", "TXT_KEY_UHV_SPA2", "TXT_KEY_UHV_SPA3"),
-("TXT_KEY_UHV_FRA1_MARATHON", "TXT_KEY_UHV_FRA2", "TXT_KEY_UHV_FRA3"),
-("TXT_KEY_UHV_KHM1", "TXT_KEY_UHV_KHM2", "TXT_KEY_UHV_KHM3_MARATHON"),
-("TXT_KEY_UHV_ENG1", "TXT_KEY_UHV_ENG2", "TXT_KEY_UHV_ENG3"),
-("TXT_KEY_UHV_HRE1", "TXT_KEY_UHV_HRE2", "TXT_KEY_UHV_HRE3"),
-("TXT_KEY_UHV_RUS1", "TXT_KEY_UHV_RUS2", "TXT_KEY_UHV_RUS3"),
-("TXT_KEY_UHV_PHI1", "TXT_KEY_UHV_PHI2", "TXT_KEY_UHV_PHI3_MARATHON"),
-("TXT_KEY_UHV_SWA1_MARATHON", "TXT_KEY_UHV_SWA2", "TXT_KEY_UHV_SWA3"),
-("TXT_KEY_UHV_MAM1", "TXT_KEY_UHV_MAM2", "TXT_KEY_UHV_MAM3"),
-("TXT_KEY_UHV_MAL1", "TXT_KEY_UHV_MAL2", "TXT_KEY_UHV_MAL3_MARATHON"),
-("TXT_KEY_UHV_POL1", "TXT_KEY_UHV_POL2", "TXT_KEY_UHV_POL3"),
-("TXT_KEY_UHV_ZIM1", "TXT_KEY_UHV_ZIM2", "TXT_KEY_UHV_ZIM3"),
-("TXT_KEY_UHV_POR1", "TXT_KEY_UHV_POR2", "TXT_KEY_UHV_POR3"),
-("TXT_KEY_UHV_INC1", "TXT_KEY_UHV_INC2_MARATHON", "TXT_KEY_UHV_INC3"),
-("TXT_KEY_UHV_ITA1", "TXT_KEY_UHV_ITA2", "TXT_KEY_UHV_ITA3"),
-("TXT_KEY_UHV_NIG1", "TXT_KEY_UHV_NIG2_MARATHON", "TXT_KEY_UHV_NIG3"),
-("TXT_KEY_UHV_MON1", "TXT_KEY_UHV_MON2", "TXT_KEY_UHV_MON3"),
-("TXT_KEY_UHV_AZT1", "TXT_KEY_UHV_AZT2", "TXT_KEY_UHV_AZT3"),
-("TXT_KEY_UHV_MUG1", "TXT_KEY_UHV_MUG2", "TXT_KEY_UHV_MUG3_MARATHON"),
-("TXT_KEY_UHV_TUR1", "TXT_KEY_UHV_TUR2", "TXT_KEY_UHV_TUR3"),
-("TXT_KEY_UHV_THA1", "TXT_KEY_UHV_THA2", "TXT_KEY_UHV_THA3"),
-("TXT_KEY_UHV_CON1", "TXT_KEY_UHV_CON2_MARATHON", "TXT_KEY_UHV_CON3"),
-("TXT_KEY_UHV_SWE1", "TXT_KEY_UHV_SWE2", "TXT_KEY_UHV_SWE3"),
-("TXT_KEY_UHV_HOL1", "TXT_KEY_UHV_HOL2", "TXT_KEY_UHV_HOL3"),
-("TXT_KEY_UHV_MAN1", "TXT_KEY_UHV_MAN2", "TXT_KEY_UHV_MAN3"),
-("TXT_KEY_UHV_GER1", "TXT_KEY_UHV_GER2", "TXT_KEY_UHV_GER3"),
-("TXT_KEY_UHV_AME1", "TXT_KEY_UHV_AME2", "TXT_KEY_UHV_AME3"),
-("TXT_KEY_UHV_ARG1", "TXT_KEY_UHV_ARG2_MARATHON", "TXT_KEY_UHV_ARG3"),
-("TXT_KEY_UHV_BRA1", "TXT_KEY_UHV_BRA2", "TXT_KEY_UHV_BRA3"),
-("TXT_KEY_UHV_AUS1", "TXT_KEY_UHV_AUS2", "TXT_KEY_UHV_AUS3"),
-("TXT_KEY_UHV_BOE1", "TXT_KEY_UHV_BOE2", "TXT_KEY_UHV_BOE3"),
-("TXT_KEY_UHV_CAN1", "TXT_KEY_UHV_CAN2", "TXT_KEY_UHV_CAN3"),
-),
-( # Epic
-("TXT_KEY_UHV_EGY1_EPIC", "TXT_KEY_UHV_EGY2_EPIC", "TXT_KEY_UHV_EGY3_EPIC"),
-("TXT_KEY_UHV_CHI1", "TXT_KEY_UHV_CHI2", "TXT_KEY_UHV_CHI3"),
-("TXT_KEY_UHV_BAB1", "TXT_KEY_UHV_BAB2_EPIC", "TXT_KEY_UHV_BAB3_EPIC"),
-("TXT_KEY_UHV_HAR1", "TXT_KEY_UHV_HAR2", "TXT_KEY_UHV_HAR3"),
-("TXT_KEY_UHV_GRE1", "TXT_KEY_UHV_GRE2_EPIC", "TXT_KEY_UHV_GRE3_EPIC"),
-("TXT_KEY_UHV_IND1_EPIC", "TXT_KEY_UHV_IND2", "TXT_KEY_UHV_IND3"),
-("TXT_KEY_UHV_CAR1", "TXT_KEY_UHV_CAR2", "TXT_KEY_UHV_CAR3_EPIC"),
-("TXT_KEY_UHV_PLY1", "TXT_KEY_UHV_PLY2", "TXT_KEY_UHV_PLY3"),
-("TXT_KEY_UHV_PER1_EPIC", "TXT_KEY_UHV_PER2_EPIC", "TXT_KEY_UHV_PER3_EPIC"),
-("TXT_KEY_UHV_ROM1_EPIC", "TXT_KEY_UHV_ROM2_EPIC", "TXT_KEY_UHV_ROM3"),
-("TXT_KEY_UHV_TAM1_EPIC", "TXT_KEY_UHV_TAM2", "TXT_KEY_UHV_TAM3_EPIC"),
-("TXT_KEY_UHV_ETH1", "TXT_KEY_UHV_ETH2_EPIC", "TXT_KEY_UHV_ETH3"),
-("TXT_KEY_UHV_VIE1_EPIC", "TXT_KEY_UHV_VIE2", "TXT_KEY_UHV_VIE3"),
-("TXT_KEY_UHV_KOR1", "TXT_KEY_UHV_KOR2", "TXT_KEY_UHV_KOR3"),
-("TXT_KEY_UHV_MAY1_EPIC", "TXT_KEY_UHV_MAY2", "TXT_KEY_UHV_MAY3"),
-("TXT_KEY_UHV_BYZ1_EPIC", "TXT_KEY_UHV_BYZ2", "TXT_KEY_UHV_BYZ3"),
-("TXT_KEY_UHV_JAP1_EPIC", "TXT_KEY_UHV_JAP2", "TXT_KEY_UHV_JAP3"),
-("TXT_KEY_UHV_VIK1", "TXT_KEY_UHV_VIK2", "TXT_KEY_UHV_VIK3_EPIC"),
-("TXT_KEY_UHV_ARA1", "TXT_KEY_UHV_ARA2", "TXT_KEY_UHV_ARA3"),
-("TXT_KEY_UHV_TIB1", "TXT_KEY_UHV_TIB2", "TXT_KEY_UHV_TIB3"),
-("TXT_KEY_UHV_INO1", "TXT_KEY_UHV_INO2", "TXT_KEY_UHV_INO3"),
-("TXT_KEY_UHV_MOO1", "TXT_KEY_UHV_MOO2", "TXT_KEY_UHV_MOO3_EPIC"),
-("TXT_KEY_UHV_SPA1", "TXT_KEY_UHV_SPA2", "TXT_KEY_UHV_SPA3"),
-("TXT_KEY_UHV_FRA1_EPIC", "TXT_KEY_UHV_FRA2", "TXT_KEY_UHV_FRA3"),
-("TXT_KEY_UHV_KHM1", "TXT_KEY_UHV_KHM2", "TXT_KEY_UHV_KHM3_EPIC"),
-("TXT_KEY_UHV_ENG1", "TXT_KEY_UHV_ENG2", "TXT_KEY_UHV_ENG3"),
-("TXT_KEY_UHV_HRE1", "TXT_KEY_UHV_HRE2", "TXT_KEY_UHV_HRE3"),
-("TXT_KEY_UHV_RUS1", "TXT_KEY_UHV_RUS2", "TXT_KEY_UHV_RUS3"),
-("TXT_KEY_UHV_PHI1", "TXT_KEY_UHV_PHI2", "TXT_KEY_UHV_PHI3_EPIC"),
-("TXT_KEY_UHV_SWA1_EPIC", "TXT_KEY_UHV_SWA2", "TXT_KEY_UHV_SWA3"),
-("TXT_KEY_UHV_MAM1", "TXT_KEY_UHV_MAM2", "TXT_KEY_UHV_MAM3"),
-("TXT_KEY_UHV_MAL1", "TXT_KEY_UHV_MAL2", "TXT_KEY_UHV_MAL3_EPIC"),
-("TXT_KEY_UHV_POL1", "TXT_KEY_UHV_POL2", "TXT_KEY_UHV_POL3"),
-("TXT_KEY_UHV_ZIM1", "TXT_KEY_UHV_ZIM2", "TXT_KEY_UHV_ZIM3"),
-("TXT_KEY_UHV_POR1", "TXT_KEY_UHV_POR2", "TXT_KEY_UHV_POR3"),
-("TXT_KEY_UHV_INC1", "TXT_KEY_UHV_INC2_EPIC", "TXT_KEY_UHV_INC3"),
-("TXT_KEY_UHV_ITA1", "TXT_KEY_UHV_ITA2", "TXT_KEY_UHV_ITA3"),
-("TXT_KEY_UHV_NIG1", "TXT_KEY_UHV_NIG2_EPIC", "TXT_KEY_UHV_NIG3"),
-("TXT_KEY_UHV_MON1", "TXT_KEY_UHV_MON2", "TXT_KEY_UHV_MON3"),
-("TXT_KEY_UHV_AZT1", "TXT_KEY_UHV_AZT2", "TXT_KEY_UHV_AZT3"),
-("TXT_KEY_UHV_MUG1", "TXT_KEY_UHV_MUG2", "TXT_KEY_UHV_MUG3_EPIC"),
-("TXT_KEY_UHV_TUR1", "TXT_KEY_UHV_TUR2", "TXT_KEY_UHV_TUR3"),
-("TXT_KEY_UHV_THA1", "TXT_KEY_UHV_THA2", "TXT_KEY_UHV_THA3"),
-("TXT_KEY_UHV_CON1", "TXT_KEY_UHV_CON2_EPIC", "TXT_KEY_UHV_CON3"),
-("TXT_KEY_UHV_SWE1", "TXT_KEY_UHV_SWE2", "TXT_KEY_UHV_SWE3"),
-("TXT_KEY_UHV_HOL1", "TXT_KEY_UHV_HOL2", "TXT_KEY_UHV_HOL3"),
-("TXT_KEY_UHV_MAN1", "TXT_KEY_UHV_MAN2", "TXT_KEY_UHV_MAN3"),
-("TXT_KEY_UHV_GER1", "TXT_KEY_UHV_GER2", "TXT_KEY_UHV_GER3"),
-("TXT_KEY_UHV_AME1", "TXT_KEY_UHV_AME2", "TXT_KEY_UHV_AME3"),
-("TXT_KEY_UHV_ARG1", "TXT_KEY_UHV_ARG2_EPIC", "TXT_KEY_UHV_ARG3"),
-("TXT_KEY_UHV_BRA1", "TXT_KEY_UHV_BRA2", "TXT_KEY_UHV_BRA3"),
-("TXT_KEY_UHV_AUS1", "TXT_KEY_UHV_AUS2", "TXT_KEY_UHV_AUS3"),
-("TXT_KEY_UHV_BOE1", "TXT_KEY_UHV_BOE2", "TXT_KEY_UHV_BOE3"),
-("TXT_KEY_UHV_CAN1", "TXT_KEY_UHV_CAN2", "TXT_KEY_UHV_CAN3"),
-),
-( # Normal
-("TXT_KEY_UHV_EGY1", "TXT_KEY_UHV_EGY2", "TXT_KEY_UHV_EGY3"),
-("TXT_KEY_UHV_CHI1", "TXT_KEY_UHV_CHI2", "TXT_KEY_UHV_CHI3"),
-("TXT_KEY_UHV_BAB1", "TXT_KEY_UHV_BAB2", "TXT_KEY_UHV_BAB3"),
-("TXT_KEY_UHV_HAR1", "TXT_KEY_UHV_HAR2", "TXT_KEY_UHV_HAR3"),
-("TXT_KEY_UHV_GRE1", "TXT_KEY_UHV_GRE2", "TXT_KEY_UHV_GRE3"),
-("TXT_KEY_UHV_IND1", "TXT_KEY_UHV_IND2", "TXT_KEY_UHV_IND3"),
-("TXT_KEY_UHV_CAR1", "TXT_KEY_UHV_CAR2", "TXT_KEY_UHV_CAR3"),
-("TXT_KEY_UHV_PLY1", "TXT_KEY_UHV_PLY2", "TXT_KEY_UHV_PLY3"),
-("TXT_KEY_UHV_PER1", "TXT_KEY_UHV_PER2", "TXT_KEY_UHV_PER3"),
-("TXT_KEY_UHV_ROM1", "TXT_KEY_UHV_ROM2", "TXT_KEY_UHV_ROM3"),
-("TXT_KEY_UHV_TAM1", "TXT_KEY_UHV_TAM2", "TXT_KEY_UHV_TAM3"),
-("TXT_KEY_UHV_ETH1", "TXT_KEY_UHV_ETH2", "TXT_KEY_UHV_ETH3"),
-("TXT_KEY_UHV_VIE1", "TXT_KEY_UHV_VIE2", "TXT_KEY_UHV_VIE3"),
-("TXT_KEY_UHV_KOR1", "TXT_KEY_UHV_KOR2", "TXT_KEY_UHV_KOR3"),
-("TXT_KEY_UHV_MAY1", "TXT_KEY_UHV_MAY2", "TXT_KEY_UHV_MAY3"),
-("TXT_KEY_UHV_BYZ1", "TXT_KEY_UHV_BYZ2", "TXT_KEY_UHV_BYZ3"),
-("TXT_KEY_UHV_JAP1", "TXT_KEY_UHV_JAP2", "TXT_KEY_UHV_JAP3"),
-("TXT_KEY_UHV_VIK1", "TXT_KEY_UHV_VIK2", "TXT_KEY_UHV_VIK3"),
-("TXT_KEY_UHV_ARA1", "TXT_KEY_UHV_ARA2", "TXT_KEY_UHV_ARA3"),
-("TXT_KEY_UHV_TIB1", "TXT_KEY_UHV_TIB2", "TXT_KEY_UHV_TIB3"),
-("TXT_KEY_UHV_INO1", "TXT_KEY_UHV_INO2", "TXT_KEY_UHV_INO3"),
-("TXT_KEY_UHV_MOO1", "TXT_KEY_UHV_MOO2", "TXT_KEY_UHV_MOO3"),
-("TXT_KEY_UHV_SPA1", "TXT_KEY_UHV_SPA2", "TXT_KEY_UHV_SPA3"),
-("TXT_KEY_UHV_FRA1", "TXT_KEY_UHV_FRA2", "TXT_KEY_UHV_FRA3"),
-("TXT_KEY_UHV_KHM1", "TXT_KEY_UHV_KHM2", "TXT_KEY_UHV_KHM3"),
-("TXT_KEY_UHV_ENG1", "TXT_KEY_UHV_ENG2", "TXT_KEY_UHV_ENG3"),
-("TXT_KEY_UHV_HRE1", "TXT_KEY_UHV_HRE2", "TXT_KEY_UHV_HRE3"),
-("TXT_KEY_UHV_RUS1", "TXT_KEY_UHV_RUS2", "TXT_KEY_UHV_RUS3"),
-("TXT_KEY_UHV_PHI1", "TXT_KEY_UHV_PHI2", "TXT_KEY_UHV_PHI3"),
-("TXT_KEY_UHV_SWA1", "TXT_KEY_UHV_SWA2", "TXT_KEY_UHV_SWA3"),
-("TXT_KEY_UHV_MAM1", "TXT_KEY_UHV_MAM2", "TXT_KEY_UHV_MAM3"),
-("TXT_KEY_UHV_MAL1", "TXT_KEY_UHV_MAL2", "TXT_KEY_UHV_MAL3"),
-("TXT_KEY_UHV_POL1", "TXT_KEY_UHV_POL2", "TXT_KEY_UHV_POL3"),
-("TXT_KEY_UHV_ZIM1", "TXT_KEY_UHV_ZIM2", "TXT_KEY_UHV_ZIM3"),
-("TXT_KEY_UHV_POR1", "TXT_KEY_UHV_POR2", "TXT_KEY_UHV_POR3"),
-("TXT_KEY_UHV_INC1", "TXT_KEY_UHV_INC2", "TXT_KEY_UHV_INC3"),
-("TXT_KEY_UHV_ITA1", "TXT_KEY_UHV_ITA2", "TXT_KEY_UHV_ITA3"),
-("TXT_KEY_UHV_NIG1", "TXT_KEY_UHV_NIG2", "TXT_KEY_UHV_NIG3"),
-("TXT_KEY_UHV_MON1", "TXT_KEY_UHV_MON2", "TXT_KEY_UHV_MON3"),
-("TXT_KEY_UHV_AZT1", "TXT_KEY_UHV_AZT2", "TXT_KEY_UHV_AZT3"),
-("TXT_KEY_UHV_MUG1", "TXT_KEY_UHV_MUG2", "TXT_KEY_UHV_MUG3"),
-("TXT_KEY_UHV_TUR1", "TXT_KEY_UHV_TUR2", "TXT_KEY_UHV_TUR3"),
-("TXT_KEY_UHV_THA1", "TXT_KEY_UHV_THA2", "TXT_KEY_UHV_THA3"),
-("TXT_KEY_UHV_CON1", "TXT_KEY_UHV_CON2", "TXT_KEY_UHV_CON3"),
-("TXT_KEY_UHV_SWE1", "TXT_KEY_UHV_SWE2", "TXT_KEY_UHV_SWE3"),
-("TXT_KEY_UHV_HOL1", "TXT_KEY_UHV_HOL2", "TXT_KEY_UHV_HOL3"),
-("TXT_KEY_UHV_MAN1", "TXT_KEY_UHV_MAN2", "TXT_KEY_UHV_MAN3"),
-("TXT_KEY_UHV_GER1", "TXT_KEY_UHV_GER2", "TXT_KEY_UHV_GER3"),
-("TXT_KEY_UHV_AME1", "TXT_KEY_UHV_AME2", "TXT_KEY_UHV_AME3"),
-("TXT_KEY_UHV_ARG1", "TXT_KEY_UHV_ARG2", "TXT_KEY_UHV_ARG3"),
-("TXT_KEY_UHV_BRA1", "TXT_KEY_UHV_BRA2", "TXT_KEY_UHV_BRA3"),
-("TXT_KEY_UHV_AUS1", "TXT_KEY_UHV_AUS2", "TXT_KEY_UHV_AUS3"),
-("TXT_KEY_UHV_BOE1", "TXT_KEY_UHV_BOE2", "TXT_KEY_UHV_BOE3"),
-("TXT_KEY_UHV_CAN1", "TXT_KEY_UHV_CAN2", "TXT_KEY_UHV_CAN3"),
-)
-)
-
-tGoals2 = (
-( # Marathon
-("TXT_KEY_UHV_EGY1_MARATHON", "TXT_KEY_UHV_EGY2_MARATHON", "TXT_KEY_UHV_EGY3_MARATHON"),
-("TXT_KEY_UHV_CHI1", "TXT_KEY_UHV_CHI2", "TXT_KEY_UHV_CHI3"),
-("TXT_KEY_UHV_BAB1", "TXT_KEY_UHV_BAB2_NOTURN", "TXT_KEY_UHV_BAB3_NOTURN"),
-("TXT_KEY_UHV_HAR1", "TXT_KEY_UHV_HAR2", "TXT_KEY_UHV_HAR3"),
-("TXT_KEY_UHV_GRE1", "TXT_KEY_UHV_GRE2_NOTURN", "TXT_KEY_UHV_GRE3"),
-("TXT_KEY_UHV_IND1", "TXT_KEY_UHV_IND2", "TXT_KEY_UHV_IND3"),
-("TXT_KEY_UHV_CAR1", "TXT_KEY_UHV_CAR2", "TXT_KEY_UHV_CAR3_MARATHON"),
-("TXT_KEY_UHV_PLY1", "TXT_KEY_UHV_PLY2", "TXT_KEY_UHV_PLY3"),
-("TXT_KEY_UHV_IRA1", "TXT_KEY_UHV_IRA2", "TXT_KEY_UHV_IRA3_MARATHON"),
-("TXT_KEY_UHV_ITA1", "TXT_KEY_UHV_ITA2", "TXT_KEY_UHV_ITA3"),
-("TXT_KEY_UHV_TAM1_MARATHON", "TXT_KEY_UHV_TAM2", "TXT_KEY_UHV_TAM3_MARATHON"),
-("TXT_KEY_UHV_ETH1", "TXT_KEY_UHV_ETH2", "TXT_KEY_UHV_ETH3"),
-("TXT_KEY_UHV_VIE1_MARATHON", "TXT_KEY_UHV_VIE2", "TXT_KEY_UHV_VIE3"),
-("TXT_KEY_UHV_KOR1", "TXT_KEY_UHV_KOR2", "TXT_KEY_UHV_KOR3"),
-("TXT_KEY_UHV_COL1", "TXT_KEY_UHV_COL2", "TXT_KEY_UHV_COL3_MARATHON"),
-("TXT_KEY_UHV_BYZ1_MARATHON", "TXT_KEY_UHV_BYZ2", "TXT_KEY_UHV_BYZ3"),
-("TXT_KEY_UHV_JAP1_MARATHON", "TXT_KEY_UHV_JAP2", "TXT_KEY_UHV_JAP3"),
-("TXT_KEY_UHV_VIK1", "TXT_KEY_UHV_VIK2", "TXT_KEY_UHV_VIK3_MARATHON"),
-("TXT_KEY_UHV_ARA1", "TXT_KEY_UHV_ARA2", "TXT_KEY_UHV_ARA3"),
-("TXT_KEY_UHV_TIB1", "TXT_KEY_UHV_TIB2", "TXT_KEY_UHV_TIB3"),
-("TXT_KEY_UHV_INO1", "TXT_KEY_UHV_INO2", "TXT_KEY_UHV_INO3"),
-("TXT_KEY_UHV_MOO1", "TXT_KEY_UHV_MOO2", "TXT_KEY_UHV_MOO3"),
-("TXT_KEY_UHV_SPA1", "TXT_KEY_UHV_SPA2", "TXT_KEY_UHV_SPA3"),
-("TXT_KEY_UHV_FRA1", "TXT_KEY_UHV_FRA2", "TXT_KEY_UHV_FRA3"),
-("TXT_KEY_UHV_KHM1", "TXT_KEY_UHV_KHM2", "TXT_KEY_UHV_KHM3_MARATHON"),
-("TXT_KEY_UHV_ENG1", "TXT_KEY_UHV_ENG2", "TXT_KEY_UHV_ENG3"),
-("TXT_KEY_UHV_HRE1", "TXT_KEY_UHV_HRE2", "TXT_KEY_UHV_HRE3"),
-("TXT_KEY_UHV_RUS1", "TXT_KEY_UHV_RUS2", "TXT_KEY_UHV_RUS3"),
-("TXT_KEY_UHV_PHI1", "TXT_KEY_UHV_PHI2", "TXT_KEY_UHV_PHI3_MARATHON"),
-("TXT_KEY_UHV_SWA1_MARATHON", "TXT_KEY_UHV_SWA2", "TXT_KEY_UHV_SWA3"),
-("TXT_KEY_UHV_MAM1", "TXT_KEY_UHV_MAM2", "TXT_KEY_UHV_MAM3"),
-("TXT_KEY_UHV_MAL1", "TXT_KEY_UHV_MAL2_MARATHON", "TXT_KEY_UHV_MAL3_MARATHON"),
-("TXT_KEY_UHV_POL1", "TXT_KEY_UHV_POL2", "TXT_KEY_UHV_POL3"),
-("TXT_KEY_UHV_ZIM1", "TXT_KEY_UHV_ZIM2", "TXT_KEY_UHV_ZIM3"),
-("TXT_KEY_UHV_POR1", "TXT_KEY_UHV_POR2", "TXT_KEY_UHV_POR3"),
-("TXT_KEY_UHV_INC1", "TXT_KEY_UHV_INC2_MARATHON", "TXT_KEY_UHV_INC3"),
-("TXT_KEY_UHV_ITA1", "TXT_KEY_UHV_ITA2", "TXT_KEY_UHV_ITA3"),
-("TXT_KEY_UHV_NIG1", "TXT_KEY_UHV_NIG2_MARATHON", "TXT_KEY_UHV_NIG3"),
-("TXT_KEY_UHV_MON1", "TXT_KEY_UHV_MON2", "TXT_KEY_UHV_MON3"),
-("TXT_KEY_UHV_MEX1", "TXT_KEY_UHV_MEX2", "TXT_KEY_UHV_MEX3"),
-("TXT_KEY_UHV_MUG1", "TXT_KEY_UHV_MUG2", "TXT_KEY_UHV_MUG3_MARATHON"),
-("TXT_KEY_UHV_TUR1", "TXT_KEY_UHV_TUR2", "TXT_KEY_UHV_TUR3"),
-("TXT_KEY_UHV_THA1", "TXT_KEY_UHV_THA2", "TXT_KEY_UHV_THA3"),
-("TXT_KEY_UHV_CON1", "TXT_KEY_UHV_CON2_MARATHON", "TXT_KEY_UHV_CON3"),
-("TXT_KEY_UHV_SWE1", "TXT_KEY_UHV_SWE2", "TXT_KEY_UHV_SWE3"),
-("TXT_KEY_UHV_HOL1", "TXT_KEY_UHV_HOL2", "TXT_KEY_UHV_HOL3"),
-("TXT_KEY_UHV_MAN1", "TXT_KEY_UHV_MAN2", "TXT_KEY_UHV_MAN3"),
-("TXT_KEY_UHV_GER1", "TXT_KEY_UHV_GER2", "TXT_KEY_UHV_GER3"),
-("TXT_KEY_UHV_AME1", "TXT_KEY_UHV_AME2", "TXT_KEY_UHV_AME3"),
-("TXT_KEY_UHV_ARG1", "TXT_KEY_UHV_ARG2_MARATHON", "TXT_KEY_UHV_ARG3"),
-("TXT_KEY_UHV_BRA1", "TXT_KEY_UHV_BRA2", "TXT_KEY_UHV_BRA3"),
-("TXT_KEY_UHV_AUS1", "TXT_KEY_UHV_AUS2", "TXT_KEY_UHV_AUS3"),
-("TXT_KEY_UHV_BOE1", "TXT_KEY_UHV_BOE2", "TXT_KEY_UHV_BOE3"),
-("TXT_KEY_UHV_CAN1", "TXT_KEY_UHV_CAN2", "TXT_KEY_UHV_CAN3")
-),
-( # Epic
-("TXT_KEY_UHV_EGY1_EPIC", "TXT_KEY_UHV_EGY2_EPIC", "TXT_KEY_UHV_EGY3_EPIC"),
-("TXT_KEY_UHV_CHI1", "TXT_KEY_UHV_CHI2", "TXT_KEY_UHV_CHI3"),
-("TXT_KEY_UHV_BAB1", "TXT_KEY_UHV_BAB2_NOTURN", "TXT_KEY_UHV_BAB3_NOTURN"),
-("TXT_KEY_UHV_HAR1", "TXT_KEY_UHV_HAR2", "TXT_KEY_UHV_HAR3"),
-("TXT_KEY_UHV_GRE1", "TXT_KEY_UHV_GRE2_NOTURN", "TXT_KEY_UHV_GRE3"),
-("TXT_KEY_UHV_IND1", "TXT_KEY_UHV_IND2", "TXT_KEY_UHV_IND3"),
-("TXT_KEY_UHV_CAR1", "TXT_KEY_UHV_CAR2", "TXT_KEY_UHV_CAR3_EPIC"),
-("TXT_KEY_UHV_PLY1", "TXT_KEY_UHV_PLY2", "TXT_KEY_UHV_PLY3"),
-("TXT_KEY_UHV_IRA1", "TXT_KEY_UHV_IRA2", "TXT_KEY_UHV_IRA3_EPIC"),
-("TXT_KEY_UHV_ITA1", "TXT_KEY_UHV_ITA2", "TXT_KEY_UHV_ITA3"),
-("TXT_KEY_UHV_TAM1_EPIC", "TXT_KEY_UHV_TAM2", "TXT_KEY_UHV_TAM3_EPIC"),
-("TXT_KEY_UHV_ETH1", "TXT_KEY_UHV_ETH2", "TXT_KEY_UHV_ETH3"),
-("TXT_KEY_UHV_VIE1_EPIC", "TXT_KEY_UHV_VIE2", "TXT_KEY_UHV_VIE3"),
-("TXT_KEY_UHV_KOR1", "TXT_KEY_UHV_KOR2", "TXT_KEY_UHV_KOR3"),
-("TXT_KEY_UHV_COL1", "TXT_KEY_UHV_COL2", "TXT_KEY_UHV_COL3_EPIC"),
-("TXT_KEY_UHV_BYZ1_EPIC", "TXT_KEY_UHV_BYZ2", "TXT_KEY_UHV_BYZ3"),
-("TXT_KEY_UHV_JAP1_EPIC", "TXT_KEY_UHV_JAP2", "TXT_KEY_UHV_JAP3"),
-("TXT_KEY_UHV_VIK1", "TXT_KEY_UHV_VIK2", "TXT_KEY_UHV_VIK3_EPIC"),
-("TXT_KEY_UHV_ARA1", "TXT_KEY_UHV_ARA2", "TXT_KEY_UHV_ARA3"),
-("TXT_KEY_UHV_TIB1", "TXT_KEY_UHV_TIB2", "TXT_KEY_UHV_TIB3"),
-("TXT_KEY_UHV_INO1", "TXT_KEY_UHV_INO2", "TXT_KEY_UHV_INO3"),
-("TXT_KEY_UHV_MOO1", "TXT_KEY_UHV_MOO2", "TXT_KEY_UHV_MOO3"),
-("TXT_KEY_UHV_SPA1", "TXT_KEY_UHV_SPA2", "TXT_KEY_UHV_SPA3"),
-("TXT_KEY_UHV_FRA1", "TXT_KEY_UHV_FRA2", "TXT_KEY_UHV_FRA3"),
-("TXT_KEY_UHV_KHM1", "TXT_KEY_UHV_KHM2", "TXT_KEY_UHV_KHM3_EPIC"),
-("TXT_KEY_UHV_ENG1", "TXT_KEY_UHV_ENG2", "TXT_KEY_UHV_ENG3"),
-("TXT_KEY_UHV_HRE1", "TXT_KEY_UHV_HRE2", "TXT_KEY_UHV_HRE3"),
-("TXT_KEY_UHV_RUS1", "TXT_KEY_UHV_RUS2", "TXT_KEY_UHV_RUS3"),
-("TXT_KEY_UHV_PHI1", "TXT_KEY_UHV_PHI2", "TXT_KEY_UHV_PHI3_EPIC"),
-("TXT_KEY_UHV_SWA1_EPIC", "TXT_KEY_UHV_SWA2", "TXT_KEY_UHV_SWA3"),
-("TXT_KEY_UHV_MAM1", "TXT_KEY_UHV_MAM2", "TXT_KEY_UHV_MAM3"),
-("TXT_KEY_UHV_MAL1", "TXT_KEY_UHV_MAL2_EPIC", "TXT_KEY_UHV_MAL3_EPIC"),
-("TXT_KEY_UHV_POL1", "TXT_KEY_UHV_POL2", "TXT_KEY_UHV_POL3"),
-("TXT_KEY_UHV_ZIM1", "TXT_KEY_UHV_ZIM2", "TXT_KEY_UHV_ZIM3"),
-("TXT_KEY_UHV_POR1", "TXT_KEY_UHV_POR2", "TXT_KEY_UHV_POR3"),
-("TXT_KEY_UHV_INC1", "TXT_KEY_UHV_INC2_EPIC", "TXT_KEY_UHV_INC3"),
-("TXT_KEY_UHV_ITA1", "TXT_KEY_UHV_ITA2", "TXT_KEY_UHV_ITA3"),
-("TXT_KEY_UHV_NIG1", "TXT_KEY_UHV_NIG2_EPIC", "TXT_KEY_UHV_NIG3"),
-("TXT_KEY_UHV_MON1", "TXT_KEY_UHV_MON2", "TXT_KEY_UHV_MON3"),
-("TXT_KEY_UHV_MEX1", "TXT_KEY_UHV_MEX2", "TXT_KEY_UHV_MEX3"),
-("TXT_KEY_UHV_MUG1", "TXT_KEY_UHV_MUG2", "TXT_KEY_UHV_MUG3_EPIC"),
-("TXT_KEY_UHV_TUR1", "TXT_KEY_UHV_TUR2", "TXT_KEY_UHV_TUR3"),
-("TXT_KEY_UHV_THA1", "TXT_KEY_UHV_THA2", "TXT_KEY_UHV_THA3"),
-("TXT_KEY_UHV_CON1", "TXT_KEY_UHV_CON2_EPIC", "TXT_KEY_UHV_CON3"),
-("TXT_KEY_UHV_SWE1", "TXT_KEY_UHV_SWE2", "TXT_KEY_UHV_SWE3"),
-("TXT_KEY_UHV_HOL1", "TXT_KEY_UHV_HOL2", "TXT_KEY_UHV_HOL3"),
-("TXT_KEY_UHV_MAN1", "TXT_KEY_UHV_MAN2", "TXT_KEY_UHV_MAN3"),
-("TXT_KEY_UHV_GER1", "TXT_KEY_UHV_GER2", "TXT_KEY_UHV_GER3"),
-("TXT_KEY_UHV_AME1", "TXT_KEY_UHV_AME2", "TXT_KEY_UHV_AME3"),
-("TXT_KEY_UHV_ARG1", "TXT_KEY_UHV_ARG2_EPIC", "TXT_KEY_UHV_ARG3"),
-("TXT_KEY_UHV_BRA1", "TXT_KEY_UHV_BRA2", "TXT_KEY_UHV_BRA3"),
-("TXT_KEY_UHV_AUS1", "TXT_KEY_UHV_AUS2", "TXT_KEY_UHV_AUS3"),
-("TXT_KEY_UHV_BOE1", "TXT_KEY_UHV_BOE2", "TXT_KEY_UHV_BOE3"),
-("TXT_KEY_UHV_CAN1", "TXT_KEY_UHV_CAN2", "TXT_KEY_UHV_CAN3")
-),
-( # Normal
-("TXT_KEY_UHV_EGY1", "TXT_KEY_UHV_EGY2", "TXT_KEY_UHV_EGY3"),
-("TXT_KEY_UHV_CHI1", "TXT_KEY_UHV_CHI2", "TXT_KEY_UHV_CHI3"),
-("TXT_KEY_UHV_BAB1", "TXT_KEY_UHV_BAB2", "TXT_KEY_UHV_BAB3"),
-("TXT_KEY_UHV_HAR1", "TXT_KEY_UHV_HAR2", "TXT_KEY_UHV_HAR3"),
-("TXT_KEY_UHV_GRE1", "TXT_KEY_UHV_GRE2", "TXT_KEY_UHV_GRE3"),
-("TXT_KEY_UHV_IND1", "TXT_KEY_UHV_IND2", "TXT_KEY_UHV_IND3"),
-("TXT_KEY_UHV_CAR1", "TXT_KEY_UHV_CAR2", "TXT_KEY_UHV_CAR3"),
-("TXT_KEY_UHV_PLY1", "TXT_KEY_UHV_PLY2", "TXT_KEY_UHV_PLY3"),
-("TXT_KEY_UHV_IRA1", "TXT_KEY_UHV_IRA2", "TXT_KEY_UHV_IRA3"),
-("TXT_KEY_UHV_ITA1", "TXT_KEY_UHV_ITA2", "TXT_KEY_UHV_ITA3"),
-("TXT_KEY_UHV_TAM1", "TXT_KEY_UHV_TAM2", "TXT_KEY_UHV_TAM3"),
-("TXT_KEY_UHV_ETH1", "TXT_KEY_UHV_ETH2", "TXT_KEY_UHV_ETH3"),
-("TXT_KEY_UHV_VIE1", "TXT_KEY_UHV_VIE2", "TXT_KEY_UHV_VIE3"),
-("TXT_KEY_UHV_KOR1", "TXT_KEY_UHV_KOR2", "TXT_KEY_UHV_KOR3"),
-("TXT_KEY_UHV_COL1", "TXT_KEY_UHV_COL2", "TXT_KEY_UHV_COL3"),
-("TXT_KEY_UHV_BYZ1", "TXT_KEY_UHV_BYZ2", "TXT_KEY_UHV_BYZ3"),
-("TXT_KEY_UHV_JAP1", "TXT_KEY_UHV_JAP2", "TXT_KEY_UHV_JAP3"),
-("TXT_KEY_UHV_VIK1", "TXT_KEY_UHV_VIK2", "TXT_KEY_UHV_VIK3"),
-("TXT_KEY_UHV_ARA1", "TXT_KEY_UHV_ARA2", "TXT_KEY_UHV_ARA3"),
-("TXT_KEY_UHV_TIB1", "TXT_KEY_UHV_TIB2", "TXT_KEY_UHV_TIB3"),
-("TXT_KEY_UHV_INO1", "TXT_KEY_UHV_INO2", "TXT_KEY_UHV_INO3"),
-("TXT_KEY_UHV_MOO1", "TXT_KEY_UHV_MOO2", "TXT_KEY_UHV_MOO3"),
-("TXT_KEY_UHV_SPA1", "TXT_KEY_UHV_SPA2", "TXT_KEY_UHV_SPA3"),
-("TXT_KEY_UHV_FRA1", "TXT_KEY_UHV_FRA2", "TXT_KEY_UHV_FRA3"),
-("TXT_KEY_UHV_KHM1", "TXT_KEY_UHV_KHM2", "TXT_KEY_UHV_KHM3"),
-("TXT_KEY_UHV_ENG1", "TXT_KEY_UHV_ENG2", "TXT_KEY_UHV_ENG3"),
-("TXT_KEY_UHV_HRE1", "TXT_KEY_UHV_HRE2", "TXT_KEY_UHV_HRE3"),
-("TXT_KEY_UHV_RUS1", "TXT_KEY_UHV_RUS2", "TXT_KEY_UHV_RUS3"),
-("TXT_KEY_UHV_PHI1", "TXT_KEY_UHV_PHI2", "TXT_KEY_UHV_PHI3"),
-("TXT_KEY_UHV_SWA1", "TXT_KEY_UHV_SWA2", "TXT_KEY_UHV_SWA3"),
-("TXT_KEY_UHV_MAM1", "TXT_KEY_UHV_MAM2", "TXT_KEY_UHV_MAM3"),
-("TXT_KEY_UHV_MAL1", "TXT_KEY_UHV_MAL2", "TXT_KEY_UHV_MAL3"),
-("TXT_KEY_UHV_POL1", "TXT_KEY_UHV_POL2", "TXT_KEY_UHV_POL3"),
-("TXT_KEY_UHV_ZIM1", "TXT_KEY_UHV_ZIM2", "TXT_KEY_UHV_ZIM3"),
-("TXT_KEY_UHV_POR1", "TXT_KEY_UHV_POR2", "TXT_KEY_UHV_POR3"),
-("TXT_KEY_UHV_INC1", "TXT_KEY_UHV_INC2", "TXT_KEY_UHV_INC3"),
-("TXT_KEY_UHV_ITA1", "TXT_KEY_UHV_ITA2", "TXT_KEY_UHV_ITA3"),
-("TXT_KEY_UHV_NIG1", "TXT_KEY_UHV_NIG2", "TXT_KEY_UHV_NIG3"),
-("TXT_KEY_UHV_MON1", "TXT_KEY_UHV_MON2", "TXT_KEY_UHV_MON3"),
-("TXT_KEY_UHV_MEX1", "TXT_KEY_UHV_MEX2", "TXT_KEY_UHV_MEX3"),
-("TXT_KEY_UHV_MUG1", "TXT_KEY_UHV_MUG2", "TXT_KEY_UHV_MUG3"),
-("TXT_KEY_UHV_TUR1", "TXT_KEY_UHV_TUR2", "TXT_KEY_UHV_TUR3"),
-("TXT_KEY_UHV_THA1", "TXT_KEY_UHV_THA2", "TXT_KEY_UHV_THA3"),
-("TXT_KEY_UHV_CON1", "TXT_KEY_UHV_CON2", "TXT_KEY_UHV_CON3"),
-("TXT_KEY_UHV_SWE1", "TXT_KEY_UHV_SWE2", "TXT_KEY_UHV_SWE3"),
-("TXT_KEY_UHV_HOL1", "TXT_KEY_UHV_HOL2", "TXT_KEY_UHV_HOL3"),
-("TXT_KEY_UHV_MAN1", "TXT_KEY_UHV_MAN2", "TXT_KEY_UHV_MAN3"),
-("TXT_KEY_UHV_GER1", "TXT_KEY_UHV_GER2", "TXT_KEY_UHV_GER3"),
-("TXT_KEY_UHV_AME1", "TXT_KEY_UHV_AME2", "TXT_KEY_UHV_AME3"),
-("TXT_KEY_UHV_ARG1", "TXT_KEY_UHV_ARG2", "TXT_KEY_UHV_ARG3"),
-("TXT_KEY_UHV_BRA1", "TXT_KEY_UHV_BRA2", "TXT_KEY_UHV_BRA3"),
-("TXT_KEY_UHV_AUS1", "TXT_KEY_UHV_AUS2", "TXT_KEY_UHV_AUS3"),
-("TXT_KEY_UHV_BOE1", "TXT_KEY_UHV_BOE2", "TXT_KEY_UHV_BOE3"),
-("TXT_KEY_UHV_CAN1", "TXT_KEY_UHV_CAN2", "TXT_KEY_UHV_CAN3")
-)
-)
-
-tGoals = (tGoals1, tGoals2)
-
-tReligiousGoals = (
-# Marathon
-(("TXT_KEY_URV_JUD1", "TXT_KEY_URV_JUD2", "TXT_KEY_URV_JUD3"),
-("TXT_KEY_URV_ORT1", "TXT_KEY_URV_ORT2", "TXT_KEY_URV_ORT3"),
-("TXT_KEY_URV_CAT1_MARATHON", "TXT_KEY_URV_CAT2", "TXT_KEY_URV_CAT3"),
-("TXT_KEY_URV_PRO1", "TXT_KEY_URV_PRO2", "TXT_KEY_URV_PRO3"),
-("TXT_KEY_URV_ISL1", "TXT_KEY_URV_ISL2", "TXT_KEY_URV_ISL3"),
-("TXT_KEY_URV_HIN1", "TXT_KEY_URV_HIN2_MARATHON", "TXT_KEY_URV_HIN3"),
-("TXT_KEY_URV_BUD1_MARATHON", "TXT_KEY_URV_BUD2_MARATHON", "TXT_KEY_URV_BUD3"),
-("TXT_KEY_URV_CON1", "TXT_KEY_URV_CON2", "TXT_KEY_URV_CON3"),
-("TXT_KEY_URV_TAO1_MARATHON", "TXT_KEY_URV_TAO2", "TXT_KEY_URV_TAO3"),
-("TXT_KEY_URV_ZOR1", "TXT_KEY_URV_ZOR2", "TXT_KEY_URV_ZOR3"),
-("TXT_KEY_URV_POL1", "TXT_KEY_URV_POL2", "TXT_KEY_URV_POL3"),
-("TXT_KEY_URV_SEC1", "TXT_KEY_URV_SEC2", "TXT_KEY_URV_SEC3")),
-# Epic
-(("TXT_KEY_URV_JUD1", "TXT_KEY_URV_JUD2", "TXT_KEY_URV_JUD3"),
-("TXT_KEY_URV_ORT1", "TXT_KEY_URV_ORT2", "TXT_KEY_URV_ORT3"),
-("TXT_KEY_URV_CAT1_EPIC", "TXT_KEY_URV_CAT2", "TXT_KEY_URV_CAT3"),
-("TXT_KEY_URV_PRO1", "TXT_KEY_URV_PRO2", "TXT_KEY_URV_PRO3"),
-("TXT_KEY_URV_ISL1", "TXT_KEY_URV_ISL2", "TXT_KEY_URV_ISL3"),
-("TXT_KEY_URV_HIN1", "TXT_KEY_URV_HIN2", "TXT_KEY_URV_HIN3"),
-("TXT_KEY_URV_BUD1_EPIC", "TXT_KEY_URV_BUD2_EPIC", "TXT_KEY_URV_BUD3"),
-("TXT_KEY_URV_CON1", "TXT_KEY_URV_CON2", "TXT_KEY_URV_CON3"),
-("TXT_KEY_URV_TAO1_EPIC", "TXT_KEY_URV_TAO2", "TXT_KEY_URV_TAO3"),
-("TXT_KEY_URV_ZOR1", "TXT_KEY_URV_ZOR2", "TXT_KEY_URV_ZOR3"),
-("TXT_KEY_URV_POL1", "TXT_KEY_URV_POL2", "TXT_KEY_URV_POL3"),
-("TXT_KEY_URV_SEC1", "TXT_KEY_URV_SEC2", "TXT_KEY_URV_SEC3")),
-# Normal
-(("TXT_KEY_URV_JUD1", "TXT_KEY_URV_JUD2", "TXT_KEY_URV_JUD3"),
-("TXT_KEY_URV_ORT1", "TXT_KEY_URV_ORT2", "TXT_KEY_URV_ORT3"),
-("TXT_KEY_URV_CAT1", "TXT_KEY_URV_CAT2", "TXT_KEY_URV_CAT3"),
-("TXT_KEY_URV_PRO1", "TXT_KEY_URV_PRO2", "TXT_KEY_URV_PRO3"),
-("TXT_KEY_URV_ISL1", "TXT_KEY_URV_ISL2", "TXT_KEY_URV_ISL3"),
-("TXT_KEY_URV_HIN1", "TXT_KEY_URV_HIN2", "TXT_KEY_URV_HIN3"),
-("TXT_KEY_URV_BUD1", "TXT_KEY_URV_BUD2", "TXT_KEY_URV_BUD3"),
-("TXT_KEY_URV_CON1", "TXT_KEY_URV_CON2", "TXT_KEY_URV_CON3"),
-("TXT_KEY_URV_TAO1", "TXT_KEY_URV_TAO2", "TXT_KEY_URV_TAO3"),
-("TXT_KEY_URV_ZOR1", "TXT_KEY_URV_ZOR2", "TXT_KEY_URV_ZOR3"),
-("TXT_KEY_URV_POL1", "TXT_KEY_URV_POL2", "TXT_KEY_URV_POL3"),
-("TXT_KEY_URV_SEC1", "TXT_KEY_URV_SEC2", "TXT_KEY_URV_SEC3")))
-
-# Dawn of Man texts
-dawnOfMan3000BC = {
-iEgypt		:	"TXT_KEY_DOM_EGYPT",
-iIndia		:	"TXT_KEY_DOM_INDIA",
-iChina		:	"TXT_KEY_DOM_CHINA",
-iHarappa	:	"TXT_KEY_DOM_HARAPPA",
-iBabylonia	:	"TXT_KEY_DOM_BABYLONIA",
-iGreece		:	"TXT_KEY_DOM_GREECE",
-iCarthage	:	"TXT_KEY_DOM_PHOENICIA",
-iPolynesia	:	"TXT_KEY_DOM_POLYNESIA",
-iPersia		:	"TXT_KEY_DOM_PERSIA",
-iRome		:	"TXT_KEY_DOM_ROME",
-iTamils		:	"TXT_KEY_DOM_TAMILS",
-iEthiopia	:	"TXT_KEY_DOM_ETHIOPIA",
-iVietnam	:	"TXT_KEY_DOM_VIETNAM",
-iJapan		:	"TXT_KEY_DOM_JAPAN",
-iKorea		:	"TXT_KEY_DOM_KOREA",
-iMaya		:	"TXT_KEY_DOM_MAYA",
-iByzantium	:	"TXT_KEY_DOM_BYZANTIUM",
-iVikings	:	"TXT_KEY_DOM_VIKINGS",
-iArabia		:	"TXT_KEY_DOM_ARABIA",
-iTibet		:	"TXT_KEY_DOM_TIBET",
-iIndonesia	:	"TXT_KEY_DOM_INDONESIA",
-iMoors		:	"TXT_KEY_DOM_MOORS",
-iSpain		:	"TXT_KEY_DOM_SPAIN",
-iFrance		:	"TXT_KEY_DOM_FRANCE",
-iKhmer		:	"TXT_KEY_DOM_KHMER",
-iEngland	:	"TXT_KEY_DOM_ENGLAND",
-iHolyRome	:	"TXT_KEY_DOM_HOLY_ROME",
-iRussia		:	"TXT_KEY_DOM_RUSSIA",
-iPhilippines	: "TXT_KEY_DOM_PHILIPPINES",
-iSwahili	:	"TXT_KEY_DOM_SWAHILI",
-iMamluks	:	"TXT_KEY_DOM_MAMLUKS",
-iMali		:	"TXT_KEY_DOM_MALI",
-iPoland		:	"TXT_KEY_DOM_POLAND",
-iZimbabwe	:	"TXT_KEY_DOM_ZIMBABWE",
-iItaly		:	"TXT_KEY_DOM_ITALY",
-iPortugal	:	"TXT_KEY_DOM_PORTUGAL",
-iInca		:	"TXT_KEY_DOM_INCA",
-iAztecs		:	"TXT_KEY_DOM_AZTECS",
-iNigeria	:	"TXT_KEY_DOM_NIGERIA",
-iMongolia	:	"TXT_KEY_DOM_MONGOLIA",
-iMughals	:	"TXT_KEY_DOM_MUGHALS",
-iTurkey		:	"TXT_KEY_DOM_TURKEY",
-iThailand	:	"TXT_KEY_DOM_THAILAND",
-iCongo		:	"TXT_KEY_DOM_CONGO",
-iSweden		:	"TXT_KEY_DOM_SWEDEN",
-iNetherlands	:	"TXT_KEY_DOM_NETHERLANDS",
-iManchuria	:	"TXT_KEY_DOM_MANCHURIA",
-iGermany	:	"TXT_KEY_DOM_GERMANY",
-iAmerica	:	"TXT_KEY_DOM_AMERICA",
-iArgentina	:	"TXT_KEY_DOM_ARGENTINA",
-iBrazil		:	"TXT_KEY_DOM_BRAZIL",
-iAustralia	:	"TXT_KEY_DOM_AUSTRALIA",
-iBrazil		:	"TXT_KEY_DOM_BOERS",
-iCanada		:	"TXT_KEY_DOM_CANADA",
-}
-
-dawnOfMan600AD = {
-iChina		:	"TXT_KEY_DOM_CHINA_LATE",
-iJapan		:	"TXT_KEY_DOM_JAPAN_LATE",
-iKorea		:	"TXT_KEY_DOM_KOREA_LATE",
-iByzantium	:	"TXT_KEY_DOM_BYZANTIUM_LATE",
-iVikings	:	"TXT_KEY_DOM_VIKINGS_LATE",
-}
-
-dawnOfMan1700AD = {
-iManchuria	:	"TXT_KEY_DOM_CHINA_1700AD",
-iIndia		:	"TXT_KEY_DOM_INDIA_1700AD",
-iPersia		:	"TXT_KEY_DOM_PERSIA_1700AD",
-iTamils		:	"TXT_KEY_DOM_TAMILS_1700AD",
-iVietnam	:	"TXT_KEY_DOM_VIETNAM_1700AD",
-iKorea		:	"TXT_KEY_DOM_KOREA_1700AD",
-iJapan		:	"TXT_KEY_DOM_JAPAN_1700AD",
-iVikings	:	"TXT_KEY_DOM_VIKINGS_1700AD",
-iSpain		:	"TXT_KEY_DOM_SPAIN_1700AD",
-iFrance		:	"TXT_KEY_DOM_FRANCE_1700AD",
-iEngland	:	"TXT_KEY_DOM_ENGLAND_1700AD",
-iHolyRome	:	"TXT_KEY_DOM_AUSTRIA_1700AD",
-iRussia		:	"TXT_KEY_DOM_RUSSIA_1700AD",
-iPoland		:	"TXT_KEY_DOM_POLAND_1700AD",
-iPortugal	:	"TXT_KEY_DOM_PORTUGAL_1700AD",
-iMughals	:	"TXT_KEY_DOM_MUGHALS_1700AD",
-iTurkey		:	"TXT_KEY_DOM_TURKEY_1700AD",
-iThailand	:	"TXT_KEY_DOM_THAILAND_1700AD",
-iCongo		:	"TXT_KEY_DOM_CONGO_1700AD",
-iSweden		:	"TXT_KEY_DOM_SWEDEN_1700AD",
-iNetherlands	:	"TXT_KEY_DOM_NETHERLANDS_1700AD",
-}
-
-lDawnOfMan = [dawnOfMan3000BC, dawnOfMan600AD, dawnOfMan1700AD]
-
-
-iAreaEurope = gc.getMap().plot(55, 50).getArea()
-iAreaAfrica = gc.getMap().plot(72, 29).getArea()
-iAreaAsia = gc.getMap().plot(102, 47).getArea()
-
-lMiddleEast = []
-lEastIndies = []
-lNorthAfrica = []
-lConstantinople = []
-
-# North Africa
-for i in range(48,65+1):
-	for j in range(35,39+1):
-		lNorthAfrica.append((i,j))
-
-for i in range(66,71+1):
-	for j in range(29,37+1):
-		lNorthAfrica.append((i,j))
-
-for i in range(72,73+1):
-	for j in range(29,32+1):
-		lNorthAfrica.append((i,j))
-
-# Middle East
-for i in range(72,86+1):
-	for j in range(34,46+1):
-		lMiddleEast.append((i,j))
-
-for i in range(69,71+1):
-	for j in range(40,45+1):
-		lMiddleEast.append((i,j))
-
-for i in range(78,86+1):
-	for j in range(47,49+1):
-		lMiddleEast.append((i,j))
-		
-
-# starting gold in 3000 BC
-tStartingGold = (
-0,	# Egypt
-0,	# China
-0,	# Babylonia
-0, 	# Harappa
-100,	# Greece
-80,	# India
-200,	# Carthage
-0,	# Polynesia
-200,	# Persia
-100,	# Rome
-200,	# Tamils
-100,	# Ethiopia
-100,	# Vietnam
-200,	# Korea
-200,	# Maya
-400,	# Byzantium
-100,	# Japan
-150,	# Viking
-300,	# Arabia
-50,	# Tibet
-300,	# Indonesia
-200,	# Moors
-200,	# Spain
-150,	# France
-200,	# Khmer
-200,	# England
-150,	# Holy Rome
-200,	# Russia
-600,	# Philippines
-600,	# Swahili
-300,	# Mamluks
-600,	# Mali
-100,	# Poland
-200,	# Zimbabwe
-200,	# Portugal
-700,	# Inca
-350,	# Italy
-250,	# Nigeria
-250,	# Mongolia
-600,	# Aztecs
-400,	# Mughals
-300,	# Turkey
-800,	# Thailand
-300,	# Congo
-500,	# Sweden
-600,	# Netherlands
-200,	# Manchu
-800,	# Germany
-1500,	# America
-1200,	# Argentina
-1600,	# Brazil
-1200,	# Australia
-1000,	# Boers
-1000,	# Canada
-50,	# Independent
-50,	# Independent
-100,	# Native
-0,	# Celtia
-0,	# Seljuks
-)
-
-dExtraGold600AD = {
-iChina : 300,
-iJapan : 200,
-iIndependent : 50,
-iIndependent2 : 50,
-iNative : 200,
-iSeljuks : 250,
-}
-
-dExtraGold1700AD = {
-iChina : 300,
-iIndia : 320,
-iTamils : 200,
-iJapan : 300,
-iSpain : 200,
-iFrance : 250,
-iEngland : 400,
-iRussia : 150,
-iPoland : 100,
-iPortugal : 250,
-iMughals : -200,
-iTurkey : -100,
-iThailand : -500,
-iSweden : 100,
-iNetherlands : 200,
-}
 
 #rnf. Some civs have a double entry, for a higher chance
 lEnemyCivsOnSpawn = [
@@ -1249,6 +546,7 @@ lEnemyCivsOnSpawn = [
 [iGreece, iPersia], #Byzantium
 [], #Japan
 [iEngland,iEngland,iFrance,iIndependent,iIndependent2], #Vikings
+[iChina, iChina, iPersia, iPersia, iIndependent, iIndependent, iIndependent2, iIndependent2], # Turks
 [iEgypt,iEgypt,iEgypt,iBabylonia,iBabylonia,iGreece,iPersia,iCarthage,iRome,iByzantium,iByzantium,iSpain,iFrance,iCeltia,iCeltia,iIndependent,iIndependent2], #Arabia
 [], #Tibet
 [iKhmer, iKhmer], #Indonesia
@@ -1269,10 +567,10 @@ lEnemyCivsOnSpawn = [
 [], #Inca
 [], #Italy
 [],	#Nigeria
-[iChina,iChina,iChina,iKorea,iKorea,iIndependent,iIndependent,iIndependent2,iIndependent2], #Mongolia
+[iChina,iChina,iChina,iKorea,iKorea,iTurks,iTurks,iTurks,iIndependent,iIndependent,iIndependent2,iIndependent2], #Mongolia
 [iMaya], #Aztec
 [iIndia, iIndia], #Mughals
-[iEgypt,iEgypt,iBabylonia,iGreece,iGreece,iArabia,iArabia,iArabia,iByzantium,iByzantium,iByzantium], #Turkey
+[iEgypt,iEgypt,iBabylonia,iGreece,iGreece,iArabia,iArabia,iArabia,iByzantium,iByzantium,iByzantium], #Ottomans
 [iKhmer, iKhmer, iKhmer], #Thailand
 [], #Congo
 [], #Sweden
@@ -1307,6 +605,7 @@ lTotalWarOnSpawn = [
 [iGreece], #Byzantium
 [], #Japan
 [], #Vikings
+[], #Turks
 [iEgypt, iBabylonia, iCarthage, iPersia], #Arabia
 [], #Tibet
 [], #Indonesia
@@ -1330,7 +629,7 @@ lTotalWarOnSpawn = [
 [iChina], #Mongolia
 [iMaya], #Aztec
 [iIndia], #Mughals
-[iArabia, iEgypt], #Turkey
+[iArabia, iEgypt], #Ottomans
 [iKhmer], #Thailand
 [], #Congo
 [], #Sweden
@@ -1358,7 +657,7 @@ tAggressionLevel = (
 0, #Polynesia
 3, #Persia
 3, #Rome
-2, #Tamils
+1, #Tamils
 0, #Ethiopia
 0, #Vietnam
 0, #Korea
@@ -1366,6 +665,7 @@ tAggressionLevel = (
 1, #Byzantium
 1, #Japan
 2, #Viking
+2, #Turks
 2, #Arabia
 1, #Tibet
 1, #Indonesia
@@ -1374,7 +674,7 @@ tAggressionLevel = (
 1, #France
 2, #Khmer
 1, #England
-3, #Holy Rome
+2, #Holy Rome
 1, #Russia
 0, #Philippines
 0, #Swahili
@@ -1389,7 +689,7 @@ tAggressionLevel = (
 2, #Mongolia
 1, #Aztec
 1, #Mughals
-2, #Turkey
+2, #Ottomans
 0, #Thailand
 0, #Congo
 1, #Sweden
@@ -1425,6 +725,7 @@ tAIStopBirthThreshold = (
     80, #Byzantium
     80, #Japan
     80, #Viking
+    50, #Turks
     80, #Arabia
     80, #Tibet
     80, #Indonesia
@@ -1488,6 +789,7 @@ tResurrectionProb = (
 65, #Byzantium
 100, #Japan
 60, #Viking
+30, #Turks
 100, #Arabia
 60, #Tibet
 80, #Indonesia
@@ -1511,7 +813,7 @@ tResurrectionProb = (
 80, #Mongolia
 70, #Aztec
 80, #Mughals
-100, #Turkey
+100, #Ottomans
 100, #Thailand
 20, #Congo
 100, #Sweden
@@ -1549,6 +851,7 @@ tPatienceThreshold = (
 25, #Byzantium
 25, #Japan
 30, #Viking
+30, #Turks
 30, #Arabia
 50, #Tibet
 30, #Indonesia
@@ -1572,7 +875,7 @@ tPatienceThreshold = (
 20, #Mongolia
 30, #Aztec
 35, #Mughals
-35, #Turkey
+35, #Ottomans
 30, #Thailand
 20, #Congo
 30, #Sweden
@@ -1587,64 +890,16 @@ tPatienceThreshold = (
 40, #Canada
 100) #Barbs
 
-
-#RnF Colonists
-tMaxColonists = (
-0, #Egypt
-0, #China
-0, #Babylonia
-0, #Harappa
-0, #Greece
-0, #India
-0, #Carthage
-0, #Polynesia
-0, #Persia
-0, #Rome
-0, #Tamils
-0, #Ethopia
-0, #Vietnam
-0, #Korea
-0, #Maya
-0, #Byzantium
-0, #Japan
-1, #Viking
-0, #Arabia
-0, #Tibet
-0, #Indonesia
-0, #Moors
-7, #Spain
-5, #France
-0, #Khmer
-6, #England
-0, #Holy Rome
-0, #Russia
-0, #Philippines
-0, #Swahili
-0, #Mamluks
-0, #Mali
-0, #Poland
-0, #Zimbabwe
-6, #Portugal
-0, #Inca
-0, #Italy
-0, #Nigeria
-0, #Mongolia
-0, #Aztec
-0, #Mughals
-0, #Turkey
-0, #Thailand
-0, #Congo
-2, #Sweden
-6, #Holland
-0, #Manchuria
-2, #Germany
-0, #America
-0, #Argentina
-0, #Brazil
-0, #Australia
-0, #Boers
-0) #Canada
-
+dMaxColonists = {
+iVikings : 1,
+iSpain : 7,
+iFrance : 5,
+iEngland : 6,
+iPortugal : 6, 
+iSweden : 2,
+iNetherlands : 6,
+iGermany : 2
+}
 
 # initialise religion variables to religion indices from XML
 iNumReligions = 10
@@ -1669,6 +924,10 @@ lProtestantStart = [iSweden, iNetherlands, iGermany, iAmerica, iAustralia, iBoer
 
 iNumCompanies = 9
 (iSilkRoute, iTradingCompany, iCerealIndustry, iFishingIndustry, iTextileIndustry, iSteelIndustry, iOilIndustry, iLuxuryIndustry, iComputerIndustry) = range(iNumCompanies)
+
+# corporations
+iNumCorporations = 9
+(iSilkRoute, iTradingCompany, iCerealIndustry, iFishingIndustry, iTextileIndustry, iSteelIndustry, iOilIndustry, iLuxuryIndustry, iComputerIndustry) = range(iNumCorporations)
 
 # initialise tech variables to unit indices from XML
 
@@ -1698,7 +957,7 @@ iTranshumanism) = range(iNumTechs)
 
 # initialise unit variables to unit indices from XML
 
-iNumUnits = 190
+iNumUnits = 191
 (iLion, iBear, iPanther, iWolf, iRabbit, iSettler, iCityBuilder, iWorker, iPunjabiWorker, iLabourer, iMadeireiro, 
 iScout, iExplorer, iSpy, iReligiousPersecutor, iJewishMissionary, iOrthodoxMissionary, iCatholicMissionary, iProtestantMissionary, iIslamicMissionary, iHinduMissionary, 
 iBuddhistMissionary, iConfucianMissionary, iTaoistMissionary, iZoroastrianMissionary, iWarrior, iMilitia, iAxeman, iLightSwordsman, iVulture, iDogSoldier, 
@@ -1707,7 +966,7 @@ iHoplite, iImmortal, iImpi, iHeavySpearman, iPikeman, iLandsknecht, iRozwiWarrio
 iMohawk, iMusketeer, iMusketman, iRedcoat, iMinuteman, iKarolin, iRifleman, iGrenadier, iAlbionLegion, iAntiTank, iInfantry, 
 iBersagliere, iDigger, iSamInfantry, iMobileSam, iMarine, iNavySeal, iParatrooper, iMechanizedInfantry, iArcher, iAsharittuBowman, iMedjay, 
 iSkirmisher, iHolkan, iKelebolo, iLongbowman, iPatiyodha, iRattanArcher, iCrossbowman, iChokonu, iChariot, iWarChariot, iHuluganni, 
-iCidainh, iHorseman, iNumidianCavalry, iAsvaka, iHorseArcher, iCamelArcher, iKhampa, iLancer, iKeshik, iCataphract, 
+iCidainh, iHorseman, iNumidianCavalry, iAsvaka, iHorseArcher, iCamelArcher, iKhampa, iOghuz, iLancer, iKeshik, iCataphract, 
 iChangSuek, iRoyalMamluk, iYanLifida, iGhulamWarrior, iFarari, iPistolier, iCuirassier, iConquistador, iWingedHussar, iEightBanner, iMountedBrave, iCamelGunner, iHussar, 
 iDragoon, iCossack, iGrenadierCavalry, iCavalry, iRurales, iKommando, iWarElephant, iBallistaElephant, iAtlasElephant, iTank, iPanzer, 
 iMainBattleTank, iGunship, iCatapult, iHwacha, iTrebuchet, iBombard, iSiegeElephant, iCannon, iHeavyCannon, iArtillery, 
@@ -1741,7 +1000,7 @@ iSugar, iTea, iTobacco, iWine, iWhales, iSoccer, iSongs, iMovies) = range(iNumBo
 
 # Buildings
 
-iNumBuildings = 248
+iNumBuildings = 249
 (iPalace, iWalls, iDun, iIya, iCastle, iCitadel, iStarFort, iPlaas, iBarracks, iIkhanda, iStable, iGer, 
 iBunker, iBombShelters, iGranary, iTerrace, iSmokehouse, iKraal, iAqueduct, iBaray, iNoria, iStepwell, iBath, 
 iReservoir, iHammam, iPharmacy, iAlchemist, iSewer, iPark, iHospital, iRecyclingCenter, iLighthouse, iTradingPost, 
@@ -1753,7 +1012,7 @@ iWeaver, iMbwadi, iTheatre, iOdeon, iHippodrome, iPavilion, iAmphitheatre, iBall
 iCinema, iBroadcastTower, iMarket, iForum, iApothecary, iCaravanserai, iGlassmaker, iSouq, iBank, iRoyalExchange, iRiksbank, iPiaohao, iRailwayStation, 
 iDepartmentStore, iMall, iSupermarket, iRefrigerationPlant, iCoffeehouse, iSalon, iDistillery, iHotel, iConstabulary, iMountedPolice, 
 iCivicSquare, iRathaus, iSejmik, iDinh, iEstate, iMausoleum, iFazenda, iHacienda, iNewsPress, iCourthouse, iJail, 
-iSacrificialAltar, iLevee, iDike, iIntelligenceAgency, iSecurityBureau, iJewishTemple, iJewishCathedral, iJewishMonastery, iJewishShrine, iOrthodoxTemple, 
+iSacrificialAltar, iDivan, iLevee, iDike, iIntelligenceAgency, iSecurityBureau, iJewishTemple, iJewishCathedral, iJewishMonastery, iJewishShrine, iOrthodoxTemple, 
 iOrthodoxCathedral, iOrthodoxMonastery, iOrthodoxShrine, iCatholicChurch, iCatholicCathedral, iCatholicMonastery, iCatholicShrine, iProtestantTemple, iProtestantCathedral, iProtestantMonastery, 
 iProtestantShrine, iIslamicTemple, iIslamicCathedral, iIslamicMonastery, iIslamicShrine, iHinduTemple, iHinduCathedral, iHinduMonastery, iHinduShrine, iBuddhistTemple, 
 iBuddhistCathedral, iBuddhistMonastery, iBuddhistShrine, iConfucianTemple, iConfucianCathedral, iConfucianMonastery, iConfucianShrine, iTaoistTemple, iTaoistCathedral, iTaoistMonastery, 
@@ -1867,6 +1126,9 @@ iNumImprovements = 28
 iWorkshop, iLumbermill, iWindmill, iWatermill, iPlantation, iSlavePlantation, iQuarry, iPasture, iCamp, iWell, 
 iOffshorePlatform, iWinery, iCottage, iHamlet, iVillage, iTown, iFort, iForestPreserve) = range(iNumImprovements)
 
+iNumRoutes = 4
+(iRouteRoad, iRouteRailroad, iRouteRomanRoad, iRouteHighway) = range(iNumRoutes)
+
 #feature & terrain
 
 iNumFeatures = 10
@@ -1893,7 +1155,7 @@ iVictorySecularism = 11
 
 #leaders
 
-iNumLeaders = 143
+iNumLeaders = 146
 (iLeaderBarbarian, iNativeLeader, iIndependentLeader, iAlexanderTheGreat, iAsoka, iAugustus, iBismarck, iBoudica, iBrennus, iCatherine, 
 iCharlemagne, iChurchill, iCyrus, iDarius, iDeGaulle, iElizabeth, iFrederick, iGandhi, iGenghisKhan, iSargon, 
 iHammurabi, iHannibal, iCleopatra, iHuaynaCapac, iIsabella, iJoao, iJuliusCaesar, iJustinian, iKublaiKhan, iLincoln, 
@@ -1907,7 +1169,8 @@ iRahman, iRajendra, iLobsangGyatso, iSobieski, iVatavelli, iMbemba, iHarun, iSon
 iLorenzo, iSantaAnna, iJuarez, iCardenas, iPedro, iSanMartin, iPeron, iBolivar, iAhoeitu, iKrishnaDevaRaya, 
 iMussolini, iSejong, iBhutto, iPilsudski, iWalesa, iGerhardsen, iVargas, iMacDonald, iCastilla, iWilliam,
 iGeorge, iChristian, iGustavVasa, iKarl, iCurtin, iMenzies, iMustasim, iKangxi, iCixi, iOduduwa, iEwuare,
-iAminatu, iLapuLapu, iKruger, iMandela, iShirazi, iDawud, iBarghash, iTrung, iChieuHoang, iHoChiMinh, iRusvingo, iMutota) = range(iNumLeaders)
+iAminatu, iLapuLapu, iKruger, iMandela, iShirazi, iDawud, iBarghash, iTrung, iChieuHoang, iHoChiMinh, iRusvingo, 
+iMutota, iKhosrow, iBumin, iTamerlane) = range(iNumLeaders)
 
 resurrectionLeaders = {
 	iChina : iHongwu,

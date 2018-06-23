@@ -91,7 +91,6 @@ void CvUnit::reloadEntity()
 void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOwner, int iX, int iY, DirectionTypes eFacingDirection)
 {
 	CvWString szBuffer;
-	int iUnitName;
 	int iI, iJ;
 
 	FAssert(NO_UNIT != eUnit);
@@ -121,12 +120,12 @@ void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOw
 	plot()->updateCenterUnit();
 
 	plot()->setFlagDirty(true);
-
+	
+	/* Leoreth: disable random name selection
 	iUnitName = GC.getGameINLINE().getUnitCreatedCount(getUnitType());
 	int iNumNames = m_pUnitInfo->getNumUnitNames();
 	if (iUnitName < iNumNames)
 	{
-		/* Leoreth: disable random name selection
 		int iOffset = GC.getGameINLINE().getSorenRandNum(iNumNames, "Unit name selection");
 
 		for (iI = 0; iI < iNumNames; iI++)
@@ -139,25 +138,8 @@ void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOw
 				GC.getGameINLINE().addGreatPersonBornName(szName);
 				break;
 			}
-		}*/
-
-		//Leoreth: names in chronological order, but allow some randomness that increases with the game era
-		/*int iOffset = GC.getGameINLINE().getSorenRandNum(GET_PLAYER(eOwner).getCurrentEra()/2, "Unit name selection");
-
-		int iIndex;
-		for (iI = 0; iI < iNumNames; iI++)
-		{
-			iIndex = iI + (iOffset % (iNumNames - iI));
-
-			CvWString szName = gDLL->getText(m_pUnitInfo->getUnitNames(iIndex));
-			if (!GC.getGameINLINE().isGreatPersonBorn(szName))
-			{
-				setName(szName);
-				GC.getGameINLINE().addGreatPersonBornName(szName);
-				break;
-			}
-		}*/
-	}
+		}
+	}*/
 
 	setGameTurnCreated(GC.getGameINLINE().getGameTurn());
 
@@ -760,6 +742,16 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer)
 		}
 	}*/
 
+	// Leoreth: Turkic UP
+	if (getOwner() == BARBARIAN && eCapturingPlayer == TURKS && GET_TEAM(GET_PLAYER(eCapturingPlayer).getTeam()).isAtWarWithMajorPlayer())
+	{
+		// mounted units
+		if (getUnitCombatType() == 2 || getUnitCombatType() == 3)
+		{
+			eCaptureUnitType = getUnitType();
+		}
+	}
+
 // BUG - Unit Captured Event - start
 	PlayerTypes eFromPlayer = getOwner();
 	UnitTypes eCapturedUnitType = getUnitType();
@@ -773,43 +765,72 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer)
 
 	GET_PLAYER(getOwnerINLINE()).deleteUnit(getID());
 
-	if (GET_PLAYER(eCapturingPlayer).isSlavery())
+	if (eCapturingPlayer != NO_PLAYER && eCaptureUnitType != NO_UNIT)
 	{
-		if ((eCapturingPlayer != NO_PLAYER) && (eCaptureUnitType != NO_UNIT) && !(GET_PLAYER(eCapturingPlayer).isBarbarian()) && GET_PLAYER(eCapturingPlayer).canTrain(eCaptureUnitType))
+		UnitClassTypes eCaptureUnitClassType = (UnitClassTypes)GC.getUnitInfo(eCaptureUnitType).getUnitClassType();
+		UnitTypes eOwnCaptureUnitType = (UnitTypes)GC.getCivilizationInfo(GET_PLAYER(eCapturingPlayer).getCivilizationType()).getCivilizationUnits(eCaptureUnitClassType);
+
+		bool bCanCapture = true;
+
+		if (bCanCapture && GET_PLAYER(eCapturingPlayer).isBarbarian()) 
 		{
-			if (GET_PLAYER(eCapturingPlayer).isHuman() || GET_PLAYER(eCapturingPlayer).AI_captureUnit(eCaptureUnitType, pPlot) || 0 == GC.getDefineINT("AI_CAN_DISBAND_UNITS"))
+			bCanCapture = false;
+		}
+
+		if (bCanCapture && !GET_PLAYER(eCapturingPlayer).canTrain(eOwnCaptureUnitType))
+		{
+			bCanCapture = false;
+		}
+
+		if (bCanCapture && GC.getUnitInfo(eCaptureUnitType).getCombat() == 0 && !GET_PLAYER(eCapturingPlayer).isSlavery())
+		{
+			bCanCapture = false;
+		}
+
+		if (bCanCapture && !GET_PLAYER(eCapturingPlayer).isHuman() && !GET_PLAYER(eCapturingPlayer).AI_captureUnit(eOwnCaptureUnitType, pPlot) && 0 != GC.getDefineINT("AI_CAN_DISBAND_UNITS"))
+		{
+			bCanCapture = false;
+		}
+
+		if (bCanCapture)
+		{
+			CvUnit* pkCapturedUnit = GET_PLAYER(eCapturingPlayer).initUnit(eCaptureUnitType, pPlot->getX_INLINE(), pPlot->getY_INLINE());
+
+			if (pkCapturedUnit != NULL)
 			{
-				CvUnit* pkCapturedUnit = GET_PLAYER(eCapturingPlayer).initUnit(eCaptureUnitType, pPlot->getX_INLINE(), pPlot->getY_INLINE());
+// BUG - Unit Captured Event - start
+				CvEventReporter::getInstance().unitCaptured(eFromPlayer, eCapturedUnitType, pkCapturedUnit);
+// BUG - Unit Captured Event - end
 
-				if (pkCapturedUnit != NULL)
+				if (GC.getUnitInfo(eCaptureUnitType).getCombat() == 0)
 				{
-	// BUG - Unit Captured Event - start
-					CvEventReporter::getInstance().unitCaptured(eFromPlayer, eCapturedUnitType, pkCapturedUnit);
-	// BUG - Unit Captured Event - end
-
 					szBuffer = gDLL->getText("TXT_KEY_MISC_YOU_CAPTURED_UNIT", GC.getUnitInfo(eCaptureUnitType).getTextKeyWide());
-					gDLL->getInterfaceIFace()->addMessage(eCapturingPlayer, true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_UNITCAPTURE", MESSAGE_TYPE_INFO, pkCapturedUnit->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
+				} 
+				else
+				{
+					szBuffer = gDLL->getText("TXT_KEY_MISC_UNIT_JOINED_YOU", GC.getUnitInfo(eCaptureUnitType).getTextKeyWide());
+				}
+				gDLL->getInterfaceIFace()->addMessage(eCapturingPlayer, true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_UNITCAPTURE", MESSAGE_TYPE_INFO, pkCapturedUnit->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
 
-					// Add a captured mission
-					CvMissionDefinition kMission;
-					kMission.setMissionTime(GC.getMissionInfo(MISSION_CAPTURED).getTime() * gDLL->getSecsPerTurn());
-					kMission.setUnit(BATTLE_UNIT_ATTACKER, pkCapturedUnit);
-					kMission.setUnit(BATTLE_UNIT_DEFENDER, NULL);
-					kMission.setPlot(pPlot);
-					kMission.setMissionType(MISSION_CAPTURED);
-					gDLL->getEntityIFace()->AddMission(&kMission);
+				// Add a captured mission
+				CvMissionDefinition kMission;
+				kMission.setMissionTime(GC.getMissionInfo(MISSION_CAPTURED).getTime() * gDLL->getSecsPerTurn());
+				kMission.setUnit(BATTLE_UNIT_ATTACKER, pkCapturedUnit);
+				kMission.setUnit(BATTLE_UNIT_DEFENDER, NULL);
+				kMission.setPlot(pPlot);
+				kMission.setMissionType(MISSION_CAPTURED);
+				gDLL->getEntityIFace()->AddMission(&kMission);
 
-					pkCapturedUnit->finishMoves();
+				pkCapturedUnit->finishMoves();
 
-					if (!GET_PLAYER(eCapturingPlayer).isHuman())
+				if (!GET_PLAYER(eCapturingPlayer).isHuman())
+				{
+					CvPlot* pPlot = pkCapturedUnit->plot();
+					if (pPlot && !pPlot->isCity(false))
 					{
-						CvPlot* pPlot = pkCapturedUnit->plot();
-						if (pPlot && !pPlot->isCity(false))
+						if (GET_PLAYER(eCapturingPlayer).AI_getPlotDanger(pPlot) && GC.getDefineINT("AI_CAN_DISBAND_UNITS"))
 						{
-							if (GET_PLAYER(eCapturingPlayer).AI_getPlotDanger(pPlot) && GC.getDefineINT("AI_CAN_DISBAND_UNITS"))
-							{
-								pkCapturedUnit->kill(false);
-							}
+							pkCapturedUnit->kill(false);
 						}
 					}
 				}
@@ -895,6 +916,13 @@ void CvUnit::doTurn()
 	setReconPlot(NULL);
 
 	setMoves(0);
+
+	// Leoreth: Turkic UP for the AI
+	if (getOwnerINLINE() == BARBARIAN && plot()->getOwnerINLINE() == TURKS && GC.getGame().getActivePlayer() != TURKS)
+	{
+		setCapturingPlayer(TURKS);
+		kill(false);
+	}
 
 	m_iStuckLoopCount = 0;
 }
@@ -1501,7 +1529,8 @@ void CvUnit::updateCombat(bool bQuick)
 		FAssertMsg(plot()->isFighting(), "Current unit instance plot is not fighting as expected");
 		FAssertMsg(pPlot->isFighting(), "pPlot is not fighting as expected");
 
-		if (!pDefender->canDefend())
+		// Leoreth: includes Turkic UP
+		if (!pDefender->canDefendAgainst(this))
 		{
 			if (!bVisible)
 			{
@@ -1658,7 +1687,7 @@ void CvUnit::updateCombat(bool bQuick)
 			}
 			else
 			{
-				bAdvance = canAdvance(pPlot, ((pDefender->canDefend()) ? 1 : 0));
+				bAdvance = canAdvance(pPlot, ((pDefender->canDefendAgainst(this) ) ? 1 : 0));
 
 				if (bAdvance)
 				{
@@ -1667,7 +1696,6 @@ void CvUnit::updateCombat(bool bQuick)
 						pDefender->setCapturingPlayer(getOwnerINLINE());
 					}
 				}
-
 
 				pDefender->kill(false);
 				pDefender = NULL;
@@ -2362,7 +2390,7 @@ bool CvUnit::generatePath(const CvPlot* pToPlot, int iFlags, bool bReuse, int* p
 
 bool CvUnit::canEnterTerritory(TeamTypes eTeam, bool bIgnoreRightOfPassage) const
 {
-	//Leoreth: allow to enter enemy territory while you have no cities to avoid being pushed out after spawn
+	// Leoreth: allow entering enemy territory while you have no cities to avoid being pushed out after spawn
 	if (GET_PLAYER(getOwner()).getNumCities() == 0)
 	{
 		return true;
@@ -2376,6 +2404,12 @@ bool CvUnit::canEnterTerritory(TeamTypes eTeam, bool bIgnoreRightOfPassage) cons
 	if (eTeam == NO_TEAM)
 	{
 		return true;
+	}
+
+	// Leoreth: Turkic UP
+	if (getOwnerINLINE() == BARBARIAN && eTeam == TURKS && !GET_TEAM(eTeam).isAtWarWithMajorPlayer())
+	{
+		return false;
 	}
 
 	if (isEnemy(eTeam))
@@ -2417,7 +2451,6 @@ bool CvUnit::canEnterTerritory(TeamTypes eTeam, bool bIgnoreRightOfPassage) cons
 			}
 		}
 	}
-
 
 	//Rhye - start UP (Dutch) - Leoreth: removed
 	//if (getOwnerINLINE() == NETHERLANDS && DOMAIN_SEA == getDomainType())
@@ -4873,7 +4906,7 @@ bool CvUnit::canPillage(const CvPlot* pPlot) const
 bool CvUnit::pillage()
 {
 	CvWString szBuffer;
-	int iPillageGold;
+	int iPillageGold = 0;
 	long lPillageGold;
 	ImprovementTypes eTempImprovement = NO_IMPROVEMENT;
 	RouteTypes eTempRoute = NO_ROUTE;
@@ -6196,7 +6229,6 @@ bool CvUnit::discover()
 	eSecondDiscoveryTech = getDiscoveryTech(eFirstDiscoveryTech);
 
 	FAssertMsg(eFirstDiscoveryTech != NO_TECH, "FirstDiscoveryTech is not assigned a valid value");
-	FAssertMsg(eSecondDiscoveryTech != NO_TECH, "SecondDiscoveryTech is not assigned a valid value");
 
 	if (eFirstDiscoveryTech != NO_TECH)
 	{
@@ -8865,6 +8897,22 @@ bool CvUnit::canDefend(const CvPlot* pPlot) const
 }
 
 
+// Leoreth
+bool CvUnit::canDefendAgainst(const CvUnit* pAttacker, const CvPlot* pPlot) const
+{
+	// Leoreth: Turkic UP
+	if (getOwnerINLINE() == BARBARIAN && pAttacker->getOwnerINLINE() == TURKS && GET_TEAM(pAttacker->getTeam()).isAtWarWithMajorPlayer())
+	{
+		if (getUnitCombatType() == 2 || getUnitCombatType() == 3)
+		{
+			return false;
+		}
+	}
+
+	return canDefend(pPlot);
+}
+
+
 bool CvUnit::canSiege(TeamTypes eTeam) const
 {
 	if (!canDefend())
@@ -10039,7 +10087,7 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
 					{
 						if (!pLoopUnit->canCoexistWithEnemyUnit(getTeam()))
 						{
-							if (NO_UNITCLASS == pLoopUnit->getUnitInfo().getUnitCaptureClassType() && pLoopUnit->canDefend(pNewPlot))
+							if (NO_UNITCLASS == pLoopUnit->getUnitInfo().getUnitCaptureClassType() && pLoopUnit->canDefendAgainst(this, pNewPlot))
 							{
 								pLoopUnit->jumpToNearestValidPlot(); // can kill unit
 							}
@@ -13812,6 +13860,12 @@ bool CvUnit::isAlwaysHostile(const CvPlot* pPlot) const
 		return false;
 	}
 
+	// Leoreth: land units are safe in own territory
+	if (NULL != pPlot && !pPlot->isWater() && pPlot->getOwnerINLINE() == getOwnerINLINE())
+	{
+		return false;
+	}
+
 	return true;
 }
 
@@ -13985,17 +14039,6 @@ int CvUnit::getOriginalArtStyle(int regionID)
 			return GC.getCivilizationInfo(GET_PLAYER((PlayerTypes)PHOENICIA).getCivilizationType()).getUnitArtStyleType();
 		}
 	}
-	/*else if (id == REGION_ANATOLIA)
-	{
-		if (GET_PLAYER((PlayerTypes)BYZANTIUM).isAlive() && !(GET_PLAYER((PlayerTypes)SELJUKS).isAlive() || GET_PLAYER((PlayerTypes)TURKEY).isAlive()))
-		{
-			return GC.getCivilizationInfo(GET_PLAYER((PlayerTypes)BYZANTIUM).getCivilizationType()).getUnitArtStyleType();
-		}
-		else
-		{
-			return GC.getCivilizationInfo(GET_PLAYER((PlayerTypes)TURKEY).getCivilizationType()).getUnitArtStyleType();
-		}
-	}*/
 	else if (id == REGION_EUROPE)
 	{
 		return GC.getCivilizationInfo(GET_PLAYER((PlayerTypes)INDEPENDENT).getCivilizationType()).getUnitArtStyleType();

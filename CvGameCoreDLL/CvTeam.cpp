@@ -2747,8 +2747,8 @@ int CvTeam::getCivilizationResearchModifier() const
 	// nerf late game China
 	if (getLeaderID() == CHINA)
 	{
-		if (GET_PLAYER(getLeaderID()).getCurrentEra() == ERA_MEDIEVAL) iCivModifier += 15;
-		if (GET_PLAYER(getLeaderID()).getCurrentEra() >= ERA_RENAISSANCE) iCivModifier += 25;
+		if (GET_PLAYER(getLeaderID()).getCurrentEra() == ERA_MEDIEVAL) iCivModifier += 20;
+		if (GET_PLAYER(getLeaderID()).getCurrentEra() >= ERA_RENAISSANCE) iCivModifier += 30;
 	}
 
 	return iCivModifier;
@@ -2870,10 +2870,19 @@ int CvTeam::getSpreadResearchModifier(TechTypes eTech) const
 	// Leoreth: slow down beelining, help catch up
 	int iCivsAlive = GC.getGameINLINE().countMajorPlayersAlive();
 	int iCivsWithTech = 0;
+	int iCivsWithTechChina = 0;
 	int iSpreadModifier = 0;
 	for (int iI = 0; iI < NUM_MAJOR_PLAYERS; iI++)
 	{
-		if (GET_PLAYER((PlayerTypes)iI).isAlive() && GET_PLAYER((PlayerTypes)iI).canContact(CHINA) && GET_TEAM((TeamTypes)iI).isHasTech(eTech)) iCivsWithTech++;
+		if (GET_PLAYER((PlayerTypes)iI).isAlive() && GET_TEAM((TeamTypes)iI).isHasTech(eTech)) 
+		{
+			iCivsWithTech++;
+
+			if (GET_PLAYER(CHINA).canContact((PlayerTypes)iI))
+			{
+				iCivsWithTechChina++;
+			}
+		}
 	}
 
 	// less than a quarter know it -> more expensive
@@ -2893,22 +2902,7 @@ int CvTeam::getSpreadResearchModifier(TechTypes eTech) const
 	int iUpperThreshold = 3 * iLowerThreshold;
 	if (iCivsWithTech > iUpperThreshold) iSpreadModifier -= iBackwardsBonus * (iCivsWithTech - (iUpperThreshold-1)) / (iCivsAlive - iUpperThreshold);
 
-	// Leoreth: Chinese UP: no penalties for researching less widespread techs until the Renaissance
-	if (getID() == CHINA && GET_PLAYER((PlayerTypes)getID()).getCurrentEra() < ERA_RENAISSANCE)
-	{
-		if (iSpreadModifier > 0) iSpreadModifier = 0;
-	}
-
 	iModifier += iSpreadModifier;
-
-	//Leoreth: new Chinese UP: techs not known by anyone get -40% cost
-	if (getID() == CHINA && GET_PLAYER((PlayerTypes)getID()).getCurrentEra() < ERA_RENAISSANCE)
-	{
-		if (iCivsWithTech == 0)
-		{
-			iModifier -= 40;
-		}
-	}
 
 	return iModifier;
 }
@@ -4004,10 +3998,6 @@ bool CvTeam::isAtWar(TeamTypes eIndex) const
 {
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
 	FAssertMsg(eIndex < MAX_TEAMS, "eIndex is expected to be within maximum bounds (invalid Index)");
-
-	// Seljuks always at war
-	if (getID() == SELJUKS || eIndex == (TeamTypes)SELJUKS)
-		return true;
 
 	return m_abAtWar[eIndex];
 }
@@ -5334,13 +5324,10 @@ void CvTeam::setHasTech(TechTypes eIndex, bool bNewValue, PlayerTypes ePlayer, b
 	CvWString szBuffer;
 	CivicOptionTypes eCivicOptionType;
 	CivicTypes eCivicType;
-	PlayerTypes eBestPlayer;
 	BonusTypes eBonus;
 	UnitTypes eFreeUnit;
 	bool bReligionFounded;
 	bool bFirstBonus;
-	int iValue;
-	int iBestValue;
 	int iI, iJ, iK;
 
 	if (eIndex == NO_TECH)
@@ -7050,9 +7037,13 @@ bool CvTeam::isAtWarWithMajorPlayer() const
 {
 	for (int iI = 0; iI < MAX_TEAMS; iI++)
 	{
-		if (isAtWar((TeamTypes)iI) && !GET_PLAYER(GET_TEAM((TeamTypes)iI).getLeaderID()).isMinorCiv())
+		if (isAtWar((TeamTypes)iI) && !GET_PLAYER(GET_TEAM((TeamTypes)iI).getLeaderID()).isMinorCiv() && !GET_PLAYER(GET_TEAM((TeamTypes)iI).getLeaderID()).isBarbarian())
 		{
-			return true;
+			CvPlayer& kPlayer = GET_PLAYER(GET_TEAM((TeamTypes)iI).getLeaderID());
+			if (kPlayer.isAlive() && !kPlayer.isMinorCiv() && !kPlayer.isBarbarian())
+			{
+				return true;
+			}
 		}
 	}
 
